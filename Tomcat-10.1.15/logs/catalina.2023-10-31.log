@@ -1,0 +1,115 @@
+31-Oct-2023 09:08:08.184 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.15
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Oct 11 2023 23:38:40 UTC
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.15.0
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.5.9-200.fsync.fc38.x86_64
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-17-openjdk-17.0.8.0.7-1.fc38.x86_64
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.8+7
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Red Hat, Inc.
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 09:08:08.187 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/logging.properties
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dhttp.nonProxyHosts=localhost|127.0.0.1|ThinkBook
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+31-Oct-2023 09:08:08.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+31-Oct-2023 09:08:08.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 09:08:08.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 09:08:08.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/temp
+31-Oct-2023 09:08:08.194 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+31-Oct-2023 09:08:08.328 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 09:08:08.344 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [251] milliseconds
+31-Oct-2023 09:08:08.366 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+31-Oct-2023 09:08:08.366 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.15]
+31-Oct-2023 09:08:08.371 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/ROOT]
+31-Oct-2023 09:08:08.523 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/ROOT] has finished in [153] ms
+31-Oct-2023 09:08:08.523 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/docs]
+31-Oct-2023 09:08:08.541 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/docs] has finished in [18] ms
+31-Oct-2023 09:08:08.541 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/examples]
+31-Oct-2023 09:08:08.649 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/examples] has finished in [107] ms
+31-Oct-2023 09:08:08.649 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/host-manager]
+31-Oct-2023 09:08:08.665 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/host-manager] has finished in [16] ms
+31-Oct-2023 09:08:08.665 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/manager]
+31-Oct-2023 09:08:08.680 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/manager] has finished in [15] ms
+31-Oct-2023 09:08:08.683 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 09:08:08.695 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [351] milliseconds
+31-Oct-2023 09:08:13.550 INFO [http-nio-8080-exec-9] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml]
+31-Oct-2023 09:08:13.551 WARNING [http-nio-8080-exec-9] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/Tenzur] in deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has been ignored
+31-Oct-2023 09:08:13.910 INFO [http-nio-8080-exec-9] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+31-Oct-2023 09:08:13.914 INFO [http-nio-8080-exec-9] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has finished in [364] ms
+31-Oct-2023 09:08:13.919 INFO [http-nio-8080-exec-10] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/Tenzur]] after start() had already been called. The second call will be ignored.
+31-Oct-2023 09:08:19.670 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+31-Oct-2023 09:08:19.670 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 09:08:19.672 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+31-Oct-2023 09:08:19.684 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 09:08:19.695 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 10:13:19.988 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.15
+31-Oct-2023 10:13:19.990 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Oct 11 2023 23:38:40 UTC
+31-Oct-2023 10:13:19.990 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.15.0
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.5.9-200.fsync.fc38.x86_64
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-17-openjdk-17.0.8.0.7-1.fc38.x86_64
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.8+7
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Red Hat, Inc.
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 10:13:19.991 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/logging.properties
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dhttp.nonProxyHosts=localhost|127.0.0.1|ThinkBook
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+31-Oct-2023 10:13:19.996 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15
+31-Oct-2023 10:13:19.997 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/temp
+31-Oct-2023 10:13:19.999 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+31-Oct-2023 10:13:20.182 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 10:13:20.198 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [316] milliseconds
+31-Oct-2023 10:13:20.232 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+31-Oct-2023 10:13:20.232 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.15]
+31-Oct-2023 10:13:20.239 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml]
+31-Oct-2023 10:13:20.254 WARNING [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/Tenzur] in deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has been ignored
+31-Oct-2023 10:13:20.798 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+31-Oct-2023 10:13:20.830 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has finished in [591] ms
+31-Oct-2023 10:13:20.831 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/ROOT]
+31-Oct-2023 10:13:20.846 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/ROOT] has finished in [15] ms
+31-Oct-2023 10:13:20.846 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/docs]
+31-Oct-2023 10:13:20.863 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/docs] has finished in [16] ms
+31-Oct-2023 10:13:20.863 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/examples]
+31-Oct-2023 10:13:20.976 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/examples] has finished in [113] ms
+31-Oct-2023 10:13:20.976 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/host-manager]
+31-Oct-2023 10:13:20.989 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/host-manager] has finished in [13] ms
+31-Oct-2023 10:13:20.989 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/manager]
+31-Oct-2023 10:13:21.002 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/webapps/manager] has finished in [13] ms
+31-Oct-2023 10:13:21.005 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 10:13:21.013 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [814] milliseconds
+31-Oct-2023 10:13:23.045 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Tenzur]
+31-Oct-2023 10:13:23.068 INFO [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml]
+31-Oct-2023 10:13:23.069 WARNING [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/Tenzur] in deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has been ignored
+31-Oct-2023 10:13:23.376 INFO [http-nio-8080-exec-10] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+31-Oct-2023 10:13:23.377 INFO [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has finished in [309] ms
+31-Oct-2023 10:13:23.382 INFO [http-nio-8080-exec-9] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/Tenzur]] after start() had already been called. The second call will be ignored.
+31-Oct-2023 10:14:20.434 INFO [http-nio-8080-exec-12] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Tenzur]
+31-Oct-2023 10:14:25.964 INFO [http-nio-8080-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml]
+31-Oct-2023 10:14:25.965 WARNING [http-nio-8080-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/Tenzur] in deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has been ignored
+31-Oct-2023 10:14:26.265 INFO [http-nio-8080-exec-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+31-Oct-2023 10:14:26.267 INFO [http-nio-8080-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/home/lars/Schule/Anwendungsentwicklung Java/Tomcat-10.1.15/conf/Catalina/localhost/Tenzur.xml] has finished in [303] ms
+31-Oct-2023 10:14:26.271 INFO [http-nio-8080-exec-6] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/Tenzur]] after start() had already been called. The second call will be ignored.
+31-Oct-2023 10:17:55.801 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+31-Oct-2023 10:17:55.802 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 10:17:55.804 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+31-Oct-2023 10:17:55.812 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+31-Oct-2023 10:17:55.814 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
