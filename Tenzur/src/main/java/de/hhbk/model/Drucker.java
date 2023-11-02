@@ -1,11 +1,10 @@
 package de.hhbk.model;
 
 
-public class Drucker extends Hardware
-{
-  //-------------------------------------------------------------------------
-  //  Var(s)
-  //-------------------------------------------------------------------------     
+public class Drucker extends Hardware {
+    //-------------------------------------------------------------------------
+    //  Var(s)
+    //-------------------------------------------------------------------------
     protected String technologie = null;
     protected boolean farbdruckfunktion = false;
     protected String papierformatMax = null;
@@ -14,47 +13,71 @@ public class Drucker extends Hardware
     protected int kapazitaetBetriebsmittel = 1000;
 
 
-  //-------------------------------------------------------------------------
-  //  Constructor(s)
-  //-------------------------------------------------------------------------     
-    public Drucker() { super(); }
- 
-    public Drucker(String sn, String hersteller, String modell) 
-    { 
-        super(); 
+    //-------------------------------------------------------------------------
+    //  Constructor(s)
+    //-------------------------------------------------------------------------
+    public Drucker() {
+        super();
+    }
+
+    public Drucker(String sn, String hersteller, String modell) {
+        super();
         this.seriennummer = sn;
         this.hersteller = hersteller;
-        this.modell = modell; 
+        this.modell = modell;
     }
- 
-    
-  //-------------------------------------------------------------------------
-  //  Get / Set
-  //-------------------------------------------------------------------------     
-    public String getTechnologie() { return technologie; }
 
-    public void setTechnologie(String technologie) { this.technologie = technologie; }
 
-    public boolean isFarbdruckfunktion() { return farbdruckfunktion; }
+    //-------------------------------------------------------------------------
+    //  Get / Set
+    //-------------------------------------------------------------------------
+    public String getTechnologie() {
+        return technologie;
+    }
 
-    public void setFarbdruckfunktion(boolean farbdruckfunktion) { this.farbdruckfunktion = farbdruckfunktion; }
+    public void setTechnologie(String technologie) {
+        this.technologie = technologie;
+    }
 
-    public String getPapierformatMax() { return papierformatMax; }
+    public boolean isFarbdruckfunktion() {
+        return farbdruckfunktion;
+    }
 
-    public void setPapierformatMax(String papierformatMax) { this.papierformatMax = papierformatMax; }
+    public void setFarbdruckfunktion(boolean farbdruckfunktion) {
+        this.farbdruckfunktion = farbdruckfunktion;
+    }
 
-    public int getSeitenGesamt() { return seitenGesamt; }
+    public String getPapierformatMax() {
+        return papierformatMax;
+    }
 
-    public void setSeitenGesamt(int seitenGesamt) { this.seitenGesamt = seitenGesamt; }
+    public void setPapierformatMax(String papierformatMax) {
+        this.papierformatMax = papierformatMax;
+    }
 
-    public int getRestkapazitaet() { return restkapazitaet; }
+    public int getSeitenGesamt() {
+        return seitenGesamt;
+    }
 
-    public void setRestkapazitaet(int restkapazitaet) { this.restkapazitaet = restkapazitaet; }
+    public void setSeitenGesamt(int seitenGesamt) {
+        this.seitenGesamt = seitenGesamt;
+    }
 
-    public int getKapazitaetBetriebsmittel() { return kapazitaetBetriebsmittel; }
+    public int getRestkapazitaet() {
+        return restkapazitaet;
+    }
 
-    public void setKapazitaetBetriebsmittel(int kapazitaetBetriebsmittel) { this.kapazitaetBetriebsmittel = kapazitaetBetriebsmittel; }
- 
-    
+    public void setRestkapazitaet(int restkapazitaet) {
+        this.restkapazitaet = restkapazitaet;
+    }
+
+    public int getKapazitaetBetriebsmittel() {
+        return kapazitaetBetriebsmittel;
+    }
+
+    public void setKapazitaetBetriebsmittel(int kapazitaetBetriebsmittel) {
+        this.kapazitaetBetriebsmittel = kapazitaetBetriebsmittel;
+    }
+
 
 }
