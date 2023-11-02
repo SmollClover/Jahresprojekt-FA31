@@ -3,64 +3,96 @@ package de.hhbk.model;
 import java.time.LocalDate;
 
 
-public abstract class Hardware extends ModelTemplate
-{ 
-  //-------------------------------------------------------------------------
-  //  Var(s)
-  //-------------------------------------------------------------------------     
-   protected String seriennummer = null;
-   protected String modell = null;
-   protected String hersteller = null;
-   protected String status = null;
-   protected int herstellergarantie = 0;
-   protected LocalDate lieferdatum = LocalDate.now();
-   protected Raum raum = null;
+public abstract class Hardware extends ModelTemplate {
+    //-------------------------------------------------------------------------
+    //  Var(s)
+    //-------------------------------------------------------------------------
+    protected String seriennummer = null;
+    protected String modell = null;
+    protected String hersteller = null;
+    protected String status = null;
+    protected int herstellergarantie = 0;
+    protected LocalDate lieferdatum = LocalDate.now();
+    protected Raum raum = null;
 
-   
-  //-------------------------------------------------------------------------
-  //  Constructor(s)
-  //-------------------------------------------------------------------------     
-    public Hardware() { super(); }
- 
 
-  //-------------------------------------------------------------------------
-  //  Get / Set
-  //-------------------------------------------------------------------------  
-    public String getSeriennummer() { return seriennummer; }
+    //-------------------------------------------------------------------------
+    //  Constructor(s)
+    //-------------------------------------------------------------------------
+    public Hardware() {
+        super();
+    }
 
-    public void setSeriennummer(String seriennummer) { this.seriennummer = seriennummer; }
 
-    public String getModell() { return modell; }
+    //-------------------------------------------------------------------------
+    //  Get / Set
+    //-------------------------------------------------------------------------
+    public String getSeriennummer() {
+        return seriennummer;
+    }
 
-    public void setModell(String modell) { this.modell = modell; }
+    public void setSeriennummer(String seriennummer) {
+        this.seriennummer = seriennummer;
+    }
 
-    public String getHersteller() { return hersteller; }
+    public String getModell() {
+        return modell;
+    }
 
-    public void setHersteller(String hersteller) { this.hersteller = hersteller; }
+    public void setModell(String modell) {
+        this.modell = modell;
+    }
 
-    public String getStatus() { return status; }
+    public String getHersteller() {
+        return hersteller;
+    }
 
-    public void setStatus(String status) { this.status = status; }
+    public void setHersteller(String hersteller) {
+        this.hersteller = hersteller;
+    }
 
-    public int getHerstellergarantie() { return herstellergarantie; }
+    public String getStatus() {
+        return status;
+    }
 
-    public void setHerstellergarantie(int herstellergarantie) { this.herstellergarantie = herstellergarantie; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public LocalDate getLieferdatum() { return lieferdatum; }
+    public int getHerstellergarantie() {
+        return herstellergarantie;
+    }
 
-    public void setLieferdatum(LocalDate lieferdatum) { this.lieferdatum = lieferdatum; }
+    public void setHerstellergarantie(int herstellergarantie) {
+        this.herstellergarantie = herstellergarantie;
+    }
 
-    public Raum getRaum() { return raum; }
+    public LocalDate getLieferdatum() {
+        return lieferdatum;
+    }
 
-    public void setRaum(Raum raum) { this.raum = raum; }
+    public void setLieferdatum(LocalDate lieferdatum) {
+        this.lieferdatum = lieferdatum;
+    }
 
-    public boolean hasRaum() { return this.raum != null; }
-    
-  //-------------------------------------------------------------------------
-  //  Method(s)
-  //-------------------------------------------------------------------------   
-    public LocalDate berechneGarantieende() { return this.lieferdatum.plusMonths(this.herstellergarantie); }
-    
-    
+    public Raum getRaum() {
+        return raum;
+    }
+
+    public void setRaum(Raum raum) {
+        this.raum = raum;
+    }
+
+    public boolean hasRaum() {
+        return this.raum != null;
+    }
+
+    //-------------------------------------------------------------------------
+    //  Method(s)
+    //-------------------------------------------------------------------------
+    public LocalDate berechneGarantieende() {
+        return this.lieferdatum.plusMonths(this.herstellergarantie);
+    }
+
 
 }

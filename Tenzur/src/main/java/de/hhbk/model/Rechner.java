@@ -1,11 +1,10 @@
 package de.hhbk.model;
 
 
-public class Rechner extends Hardware
-{
-  //-------------------------------------------------------------------------
-  //  Var(s)
-  //-------------------------------------------------------------------------     
+public class Rechner extends Hardware {
+    //-------------------------------------------------------------------------
+    //  Var(s)
+    //-------------------------------------------------------------------------
     protected String cpu = null;
     protected int arbeitsspeicher = 0;
     protected String betriebssystem = null;
@@ -14,51 +13,79 @@ public class Rechner extends Hardware
     protected int ssd = 0;
     protected int hdd = 0;
 
-  //-------------------------------------------------------------------------
-  //  Constructor(s)
-  //-------------------------------------------------------------------------     
-    public Rechner() { super(); }
-
-    public Rechner(String sn, String hersteller, String modell) 
-    { 
-        super(); 
-        this.seriennummer = sn;
-        this.hersteller = hersteller;
-        this.modell = modell; 
+    //-------------------------------------------------------------------------
+    //  Constructor(s)
+    //-------------------------------------------------------------------------
+    public Rechner() {
+        super();
     }
 
-    
-  //-------------------------------------------------------------------------
-  //  Get / Set
-  //-------------------------------------------------------------------------     
-    public String getCpu() { return cpu; }
+    public Rechner(String sn, String hersteller, String modell) {
+        super();
+        this.seriennummer = sn;
+        this.hersteller = hersteller;
+        this.modell = modell;
+    }
 
-    public void setCpu(String cpu) { this.cpu = cpu; }
 
-    public int getArbeitsspeicher() { return arbeitsspeicher; }
+    //-------------------------------------------------------------------------
+    //  Get / Set
+    //-------------------------------------------------------------------------
+    public String getCpu() {
+        return cpu;
+    }
 
-    public void setArbeitsspeicher(int arbeitsspeicher) { this.arbeitsspeicher = arbeitsspeicher; }
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
 
-    public String getBetriebssystem() { return betriebssystem; }
+    public int getArbeitsspeicher() {
+        return arbeitsspeicher;
+    }
 
-    public void setBetriebssystem(String betriebssystem) { this.betriebssystem = betriebssystem; }
+    public void setArbeitsspeicher(int arbeitsspeicher) {
+        this.arbeitsspeicher = arbeitsspeicher;
+    }
 
-    public String getTyp() { return typ; }
+    public String getBetriebssystem() {
+        return betriebssystem;
+    }
 
-    public void setTyp(String typ) { this.typ = typ; }
+    public void setBetriebssystem(String betriebssystem) {
+        this.betriebssystem = betriebssystem;
+    }
 
-    public String getGrafikkarte() { return grafikkarte; }
+    public String getTyp() {
+        return typ;
+    }
 
-    public void setGrafikkarte(String grafikkarte) { this.grafikkarte = grafikkarte; }
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
 
-    public int getSsd() { return ssd; }
+    public String getGrafikkarte() {
+        return grafikkarte;
+    }
 
-    public void setSsd(int ssd) { this.ssd = ssd; }
+    public void setGrafikkarte(String grafikkarte) {
+        this.grafikkarte = grafikkarte;
+    }
 
-    public int getHdd() { return hdd; }
+    public int getSsd() {
+        return ssd;
+    }
 
-    public void setHdd(int hdd) { this.hdd = hdd; }
-  
-    
+    public void setSsd(int ssd) {
+        this.ssd = ssd;
+    }
+
+    public int getHdd() {
+        return hdd;
+    }
+
+    public void setHdd(int hdd) {
+        this.hdd = hdd;
+    }
+
 
 }

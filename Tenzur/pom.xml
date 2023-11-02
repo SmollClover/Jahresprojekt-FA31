@@ -60,6 +60,17 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.5.4-Final</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -111,5 +122,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
