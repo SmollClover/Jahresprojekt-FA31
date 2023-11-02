@@ -2194,14 +2194,14 @@ html {
     -o-transition: margin-left 0.3s;
     -webkit-transition: margin-left 0.3s;
     transition: margin-left 0.3s;
-    background-color: #4e5159;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#4e5159), to(#1f2023));
+    background-color: #083865;
+ /*   background-image: -webkit-gradient(linear, left top, left bottom, from(#4e5159), to(#1f2023));
     background-image: -webkit-linear-gradient(top, #4e5159, #1f2023);
     background-image: -moz-linear-gradient(top, #4e5159, #1f2023);
     background-image: -ms-linear-gradient(top, #4e5159, #1f2023);
     background-image: -o-linear-gradient(top, #4e5159, #1f2023);
     background-image: linear-gradient(top, #4e5159, #1f2023);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e5159', endColorstr='#1f2023');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e5159', endColorstr='#1f2023'); */
 }
 
 .wrapper .sidebar .logo {
@@ -2209,6 +2209,7 @@ html {
     height: 50px;
     box-sizing: border-box;
     padding-top: .7em;
+    margin-top: 3em;
 }
 
 .wrapper .sidebar .profile {
