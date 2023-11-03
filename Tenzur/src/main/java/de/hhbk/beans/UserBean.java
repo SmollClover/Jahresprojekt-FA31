@@ -40,7 +40,7 @@ public class UserBean extends BeanTemplate {
 
     // Load User
     public User loadUser(Integer id) {
-
+        return null;
     }
 
     // Save User
