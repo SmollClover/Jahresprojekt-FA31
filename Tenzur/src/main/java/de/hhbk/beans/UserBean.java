@@ -8,7 +8,7 @@ import javax.inject.Named;
 interface Request {
 }
 
-@Named(value = "benutzer")
+@Named(value = "user")
 @SessionScoped
 public class UserBean extends BeanTemplate {
 
@@ -27,6 +27,10 @@ public class UserBean extends BeanTemplate {
     //     getItemList().add(new Drucker("990815", "Canon", "MX-925"));
     //     getItemList().add(new Drucker("222888", "HP", "DeskJet 9000"));
     // }
+
+    public String test(){
+        return "Test String";
+    }
 
     // Get User
     public User getUser() {
