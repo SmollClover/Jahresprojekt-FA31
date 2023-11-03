@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class UserEntity extends EntityTemplate {
+public class User extends EntityTemplate {
     protected String passwort = null;
     @Id
     @GeneratedValue
@@ -19,11 +19,11 @@ public class UserEntity extends EntityTemplate {
     private String email;
     private String benutzername;
 
-    public UserEntity() {
+    public User() {
         super();
     }
 
-    public UserEntity(long rollenId, String vorname, String nachname, String strasse, String strassennummer, int plz, String email, String benutzername, String passwort) {
+    public User(long rollenId, String vorname, String nachname, String strasse, String strassennummer, int plz, String email, String benutzername, String passwort) {
         this.rollenId = rollenId;
         this.vorname = vorname;
         this.nachname = nachname;
