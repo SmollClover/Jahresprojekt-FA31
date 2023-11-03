@@ -2,12 +2,11 @@ package de.hhbk.beans;
 
 import de.hhbk.entities.User;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
 
+interface Request {
+}
 
 @Named(value = "benutzer")
 @SessionScoped
@@ -15,7 +14,7 @@ public class UserBean extends BeanTemplate {
 
     // Attributes
     protected User user = null;
-    
+
     // Methods
     public UserBean() {
         super();
@@ -30,30 +29,37 @@ public class UserBean extends BeanTemplate {
     // }
 
     // Get User
-    public User getUser(){
+    public User getUser() {
         return user;
     }
-    
+
     // Set User
-    public void setUser(User user){
+    public void setUser(User user) {
         this.user = user;
     }
-    
+
     // Load User
-    public User loadUser(Integer id){
+    public User loadUser(Integer id) {
 
     }
+
     // Save User
-    public void saveUser(User user){
+    public void saveUser(User user) {
 
     }
+
     // Delete User
-    public void deleteUser(User user){
+    public void deleteUser(User user) {
 
     }
+
     // Login
-    public User login(Request request){}
+    public User login(Request request) {
+        return null;
+    }
+
     // Logout
-    public void logout(User user){}
+    public void logout(User user) {
+    }
     // Check Permissions
 }
