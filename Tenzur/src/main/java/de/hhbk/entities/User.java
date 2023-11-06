@@ -10,7 +10,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String rolle;
+    private Rolle rolle;
     private String vorname;
     private String nachname;
     private String strasse;
@@ -25,10 +25,10 @@ public class User implements Serializable {
 
     public User() {
         super();
+        this.rolle = Rolle.NONE;
     }
 
-    public User(String rolle, String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
-        this.rolle = rolle;
+    public User(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
@@ -48,11 +48,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getRolle() {
+    public Rolle getRolle() {
         return rolle;
     }
 
-    public void setRolle(String rolle) {
+    public void setRolle(Rolle rolle) {
         this.rolle = rolle;
     }
 
