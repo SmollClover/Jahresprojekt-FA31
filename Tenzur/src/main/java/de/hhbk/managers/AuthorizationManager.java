@@ -1,8 +1,5 @@
 package de.hhbk.managers;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.jose4j.jwa.AlgorithmConstraints.ConstraintType;
 import org.jose4j.jwk.RsaJsonWebKey;
 import org.jose4j.jwk.RsaJwkGenerator;
@@ -16,17 +13,26 @@ import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.lang.JoseException;
 
-public class AuthorizationManager {
+import java.util.Arrays;
+import java.util.List;
 
-    public static String generateJWT() throws JoseException, MalformedClaimException {
+public class AuthorizationManager {
+    private RsaJsonWebKey rsaKey = null;
+
+    public AuthorizationManager() throws JoseException {
+        this.generateRSA();
+    }
+
+    public void generateRSA() throws JoseException {
         // Generate an RSA key pair, which will be used for signing and verification of
         // the JWT, wrapped in a JWK
-        // TODO Private Key einbauen
-        RsaJsonWebKey rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
+        this.rsaKey = RsaJwkGenerator.generateJwk(2048);
 
         // Give the JWK a Key ID (kid), which is just the polite thing to do
-        rsaJsonWebKey.setKeyId("k1");
+        this.rsaKey.setKeyId("tenzur");
+    }
 
+    public String generateJWT() throws JoseException, MalformedClaimException {
         // Create the Claims, which will be the content of the JWT
         JwtClaims claims = new JwtClaims();
         claims.setIssuer("Tenzur"); // who creates the token and signs it
@@ -48,12 +54,12 @@ public class AuthorizationManager {
         jws.setPayload(claims.toJson());
 
         // The JWT is signed using the private key
-        jws.setKey(rsaJsonWebKey.getPrivateKey());
+        jws.setKey(this.rsaKey.getPrivateKey());
 
         // Set the Key ID (kid) header because it's just the polite thing to do.
         // We only have one key in this example but a using a Key ID helps
         // facilitate a smooth key rollover process
-        jws.setKeyIdHeaderValue(rsaJsonWebKey.getKeyId());
+        jws.setKeyIdHeaderValue(this.rsaKey.getKeyId());
 
         // Set the signature algorithm on the JWT/JWS that will integrity protect the
         // claims
@@ -70,7 +76,7 @@ public class AuthorizationManager {
         return jwt;
     }
 
-    public boolean validateToken(String token){
+    public boolean validateToken(String token) throws MalformedClaimException {
         // Use JwtConsumerBuilder to construct an appropriate JwtConsumer, which will
         // be used to validate and process the JWT.
         // The specific validation requirements for a JWT are context dependent,
@@ -80,14 +86,13 @@ public class AuthorizationManager {
         // an audience that identifies your system as the intended recipient.
         // If the JWT is encrypted too, you need only provide a decryption key or
         // decryption key resolver to the builder.
-        JwtConsumer jwtConsumer = new JwtConsumerBuilder()
-                .setRequireExpirationTime() // the JWT must have an expiration time
+        JwtConsumer jwtConsumer = new JwtConsumerBuilder().setRequireExpirationTime() // the JWT must have an expiration time
                 .setAllowedClockSkewInSeconds(30) // allow some leeway in validating time based claims to account for
-                                                  // clock skew
+                // clock skew
                 .setRequireSubject() // the JWT must have a subject claim
                 .setExpectedIssuer("Tenzur") // whom the JWT needs to have been issued by
                 .setExpectedAudience("User") // to whom the JWT is intended for
-                .setVerificationKey(rsaJsonWebKey.getKey()) // verify the signature with the public key
+                .setVerificationKey(this.rsaKey.getKey()) // verify the signature with the public key
                 .setJwsAlgorithmConstraints( // only allow the expected signature algorithm(s) in the given context
                         ConstraintType.PERMIT, AlgorithmIdentifiers.RSA_USING_SHA256) // which is only RS256 here
                 .build(); // create the JwtConsumer instance
