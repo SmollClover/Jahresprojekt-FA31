@@ -101,6 +101,7 @@ public class AuthorizationManager {
             // Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
             System.out.println("JWT validation succeeded! " + jwtClaims);
+            return true;
         } catch (InvalidJwtException e) {
             // InvalidJwtException will be thrown, if the JWT failed processing or
             // validation in anyway.
@@ -120,7 +121,7 @@ public class AuthorizationManager {
             if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
                 System.out.println("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
             }
+            return false;
         }
-        return true;
     }
 }

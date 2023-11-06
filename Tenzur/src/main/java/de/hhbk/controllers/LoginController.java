@@ -31,15 +31,15 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        System.out.println(username);
+        // System.out.println(username);
         // System.out.println(password);
 
         String hashedPassword = BCrypt.withDefaults().hashToString(14, password.toCharArray());
 
-        // TODO Load Password from User Table
+        // TODO Load Password from User Table by username/email
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
 
-        System.out.println(result.verified);
+        // System.out.println(result.verified);
         AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
         String jwt = manager.generateJWT();
         if (result.verified) {
