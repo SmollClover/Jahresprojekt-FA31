@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import de.hhbk.managers.AuthorizationManager;
 
 @WebServlet("/api/login")
 public class LoginController extends HttpServlet{
@@ -44,9 +45,9 @@ public class LoginController extends HttpServlet{
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
 
         System.out.println(result.verified);
+        String jwt = AuthorizationManager.generateJWT();
         if(result.verified){
-            Cookie auth = new Cookie("login", "true");
-            auth.setMaxAge(60*60);
+            Cookie auth = new Cookie("authorization", jwt);
             response.addCookie(auth);
         }
 
