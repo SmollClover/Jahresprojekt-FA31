@@ -116,6 +116,10 @@ public class AuthorizationManager {
         // }
     }
 
+    public String encryptToken(){
+        return "";
+    }
+
     public String refreshToken(){
         return "";
     }
