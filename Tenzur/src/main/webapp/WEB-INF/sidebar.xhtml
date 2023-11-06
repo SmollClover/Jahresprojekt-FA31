@@ -1,51 +1,100 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:ui="http://java.sun.com/jsf/facelets"
->
-    <h:form id="menuform">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
         <div class="sidebar">
-            <div class="nano">
-                <div class="nano-content sidebar-scroll-content">
-                    <div class="logo">
-                        <img src="#{request.contextPath}/images/hhbk_white.png" width="213"/>
-                    </div>
-
-                    <div class="menu" style="margin-top: 160px;">
-
-                        <ul id="menuform:j_idt18" class="menu-container">
-                            <li role="menuitem">
-                                <a href="benutzer.xhtml">
-                                    <i class="layout-menuitem-icon pi pi-fw pi-users"></i>
-                                    <span>Benutzer</span>
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="raeume.xhtml">
-                                    <i class="layout-menuitem-icon pi pi-fw pi-home"></i>
-                                    <span>R&auml;ume</span>
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="drucker.xhtml">
-                                    <i class="layout-menuitem-icon pi pi-fw pi-print"></i>
-                                    <span>Drucker</span>
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="rechner.xhtml">
-                                    <i class="layout-menuitem-icon pi pi-fw pi-desktop"></i>
-                                    <span>Rechner</span>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
+            <div class="company-logo">
+                <img src="images/logo.svg" alt="Logo"/>
             </div>
-        </div>
-    </h:form>
+
+            <p:tabMenu activeIndex="#{param.i}" style="width:15rem" orientation="left">
+            
+            <!--<p:menubar>
+                <p:menuitem>
+                    Test
+                </p:menuitem>
+            </p:menubar>
+            <div class="menu">
+                <div class="menu-container">-->
+            <p:menuitem value="Dashboard" outcome="benutzer.xhtml" icon="fa-solid fa-gauge">
+                <f:param name="i" value="0"/>
+            </p:menuitem>
+            <p:menuitem value="Immobilien" icon="fa-solid fa-home">
+                <f:param name="i" value="1"/>
+            </p:menuitem>
+            <p:menuitem value="Mieter" icon="fa-solid fa-house-user">
+                <f:param name="i" value="2"/>
+            </p:menuitem>
+            <p:menuitem value="Dokumente" icon="fa-solid fa-file">
+                <f:param name="i" value="3"/>
+            </p:menuitem>
+            <p:menuitem value="Benutzer" icon="fa-solid fa-user">
+                <f:param name="i" value="4"/>
+            </p:menuitem>
+            <p:menuitem value="Chat" icon="fa-solid fa-message">
+                <f:param name="i" value="5"/>
+            </p:menuitem>
+            <p:menuitem value="Termine" icon="fa-solid fa-calendar-check">
+                <f:param name="i" value="6"/>
+            </p:menuitem>
+            <p:menuitem value="Reports" icon="fa-solid fa-book">
+                <f:param name="i" value="7"/>
+            </p:menuitem>
+                    <!--<div role="menuitem" class="menu-item">
+                        <a href="benutzer.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-gauge"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="raeume.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-home"></i>
+                            <span>Immobilien</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="drucker.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-house-user"></i>
+                            <span>Mieter</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="rechner.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-file"></i>
+                            <span>Dokumente</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="rechner.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-user"></i>
+                            <span>Benutzer</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="rechner.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-message"></i>
+                            <span>Chat</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="rechner.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-calendar-check"></i>
+                            <span>Termine</span>
+                        </a>
+                    </div>
+                    <div role="menuitem" class="menu-item">
+                        <a href="rechner.xhtml">
+                            <i class="layout-menuitem-icon fa-solid fa-book"></i>
+                            <span>Reports</span>
+                        </a>
+                    </div>-->
+            </p:tabMenu>
+                    </div>
+                <!--</div>
+            </div>-->
 </ui:composition>
