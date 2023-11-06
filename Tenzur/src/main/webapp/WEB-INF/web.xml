@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <!-- META -->
-    <display-name>HHBK</display-name>
-    <description></description>
+    <display-name>Tenzur</display-name>
+    <description>Immobilien- und Mietverwaltung der HausBau GbR</description>
 
 
     <!-- Parameter -->
@@ -34,9 +34,12 @@
     </servlet>
 
 
-    <!-- Listener -->
+    <!-- Listeners -->
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>de.hhbk.managers.DatabaseManager</listener-class>
     </listener>
 
 
