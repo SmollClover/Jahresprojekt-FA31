@@ -26,7 +26,7 @@ public class AuthorizationManager {
     public void generateRSA() throws JoseException {
         // Generate an RSA key pair, which will be used for signing and verification of
         // the JWT, wrapped in a JWK
-        this.rsaKey = RsaJwkGenerator.generateJwk(2048);
+        this.rsaKey = RsaJwkGenerator.generateJwk(4096);
 
         // Give the JWK a Key ID (kid), which is just the polite thing to do
         this.rsaKey.setKeyId("tenzur");
