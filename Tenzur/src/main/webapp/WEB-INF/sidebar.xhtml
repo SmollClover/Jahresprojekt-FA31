@@ -4,15 +4,48 @@
 <ui:composition
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    >
+    xmlns:p="http://primefaces.org/ui">
         <div class="sidebar">
             <div class="company-logo">
                 <img src="images/logo.svg" alt="Logo"/>
             </div>
+
+            <p:tabMenu activeIndex="#{param.i}" style="width:15rem" orientation="left">
+            
+            <!--<p:menubar>
+                <p:menuitem>
+                    Test
+                </p:menuitem>
+            </p:menubar>
             <div class="menu">
-                <div class="menu-container">
-                    <div role="menuitem" class="menu-item">
+                <div class="menu-container">-->
+            <p:menuitem value="Dashboard" outcome="benutzer.xhtml" icon="fa-solid fa-gauge">
+                <f:param name="i" value="0"/>
+            </p:menuitem>
+            <p:menuitem value="Immobilien" icon="fa-solid fa-home">
+                <f:param name="i" value="1"/>
+            </p:menuitem>
+            <p:menuitem value="Mieter" icon="fa-solid fa-house-user">
+                <f:param name="i" value="2"/>
+            </p:menuitem>
+            <p:menuitem value="Dokumente" icon="fa-solid fa-file">
+                <f:param name="i" value="3"/>
+            </p:menuitem>
+            <p:menuitem value="Benutzer" icon="fa-solid fa-user">
+                <f:param name="i" value="4"/>
+            </p:menuitem>
+            <p:menuitem value="Chat" icon="fa-solid fa-message">
+                <f:param name="i" value="5"/>
+            </p:menuitem>
+            <p:menuitem value="Termine" icon="fa-solid fa-calendar-check">
+                <f:param name="i" value="6"/>
+            </p:menuitem>
+            <p:menuitem value="Reports" icon="fa-solid fa-book">
+                <f:param name="i" value="7"/>
+            </p:menuitem>
+                    <!--<div role="menuitem" class="menu-item">
                         <a href="benutzer.xhtml">
                             <i class="layout-menuitem-icon fa-solid fa-gauge"></i>
                             <span>Dashboard</span>
@@ -59,8 +92,9 @@
                             <i class="layout-menuitem-icon fa-solid fa-book"></i>
                             <span>Reports</span>
                         </a>
+                    </div>-->
+            </p:tabMenu>
                     </div>
-                </div>
-            </div>
-        </div>
+                <!--</div>
+            </div>-->
 </ui:composition>
