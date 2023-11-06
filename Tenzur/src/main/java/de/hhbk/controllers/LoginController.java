@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
 
         System.out.println(result.verified);
-        AuthorizationManager manager = (AuthorizationManager) request.getAttribute("Auth");
+        AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
         String jwt = manager.generateJWT();
         if (result.verified) {
             Cookie auth = new Cookie("authorization", jwt);
