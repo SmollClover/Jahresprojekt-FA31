@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <!-- META -->
-    <display-name>HHBK</display-name>
-    <description></description>
+    <display-name>Tenzur</display-name>
+    <description>Immobilien- und Mietverwaltung der HausBau GbR</description>
 
 
     <!-- Parameter -->
@@ -25,8 +25,15 @@
         <param-value>true</param-value>
     </context-param>
     <context-param>
-    <param-name>primefaces.THEME</param-name>
-    <param-value>arya</param-value>
+        <param-name>primefaces.HTML5_COMPLIANCE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.MOVE_SCRIPTS_TO_BOTTOM</param-name>
+        <param-value>true</param-value>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>arya</param-value>
     </context-param>
 
 
@@ -38,9 +45,12 @@
     </servlet>
 
 
-    <!-- Listener -->
+    <!-- Listeners -->
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>de.hhbk.listeners.DatabaseListener</listener-class>
     </listener>
 
 
