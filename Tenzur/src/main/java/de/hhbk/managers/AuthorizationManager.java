@@ -115,4 +115,12 @@ public class AuthorizationManager {
         //     }
         // }
     }
+
+    public String refreshToken(){
+        return "";
+    }
+
+    public boolean validateToken(String token){
+        return true;
+    }
 }
