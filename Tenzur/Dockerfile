@@ -6,6 +6,7 @@ COPY src/ .
 
 RUN mvn compile
 RUN mvn war:war
+RUN mvn war:exploded
 
 FROM tomcat:9 as Server
 
