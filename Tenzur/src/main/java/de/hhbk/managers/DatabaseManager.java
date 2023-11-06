@@ -1,6 +1,6 @@
 package de.hhbk.managers;
 
-import de.hhbk.entities.User;
+import de.hhbk.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,6 +16,14 @@ public class DatabaseManager {
             this.sessionFactory = new Configuration()
                     .setProperties(getProperties())
                     .addAnnotatedClass(User.class)
+                    .addAnnotatedClass(Telefonnummer.class)
+                    .addAnnotatedClass(Ort.class)
+                    .addAnnotatedClass(Mieter.class)
+                    .addAnnotatedClass(Mietobjekt.class)
+                    .addAnnotatedClass(MietobjektMieter.class)
+                    .addAnnotatedClass(Konto.class)
+                    .addAnnotatedClass(Kontoinhaber.class)
+                    .addAnnotatedClass(Einnahme.class)
                     .buildSessionFactory();
 
             this.session = this.sessionFactory.openSession();

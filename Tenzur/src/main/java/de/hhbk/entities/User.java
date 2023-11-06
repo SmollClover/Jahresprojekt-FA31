@@ -1,35 +1,40 @@
 package de.hhbk.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
-public class User extends EntityTemplate {
-    protected String passwort = null;
+public class User implements Serializable {
     @Id
-    @GeneratedValue
-    private Long id;
-    private long rollenId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String rolle;
     private String vorname;
     private String nachname;
     private String strasse;
     private String strassennummer;
-    private int plz;
+    @ManyToOne
+    private Ort ort;
+    @OneToMany
+    private Collection<Telefonnummer> telefonnummer = new ArrayList<Telefonnummer>();
     private String email;
     private String benutzername;
+    private String passwort;
 
     public User() {
         super();
     }
 
-    public User(long rollenId, String vorname, String nachname, String strasse, String strassennummer, int plz, String email, String benutzername, String passwort) {
-        this.rollenId = rollenId;
+    public User(String rolle, String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
+        this.rolle = rolle;
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
         this.strassennummer = strassennummer;
-        this.plz = plz;
+        this.ort = ort;
+        this.telefonnummer = telefonnummer;
         this.email = email;
         this.benutzername = benutzername;
         this.passwort = passwort;
@@ -39,16 +44,16 @@ public class User extends EntityTemplate {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public long getRollenId() {
-        return rollenId;
+    public String getRolle() {
+        return rolle;
     }
 
-    public void setRollenId(long rollenId) {
-        this.rollenId = rollenId;
+    public void setRolle(String rolle) {
+        this.rolle = rolle;
     }
 
     public String getVorname() {
@@ -83,12 +88,20 @@ public class User extends EntityTemplate {
         this.strassennummer = strassennummer;
     }
 
-    public int getPlz() {
-        return plz;
+    public Ort getOrt() {
+        return ort;
     }
 
-    public void setPlz(int plz) {
-        this.plz = plz;
+    public void setOrt(Ort ort) {
+        this.ort = ort;
+    }
+
+    public Collection<Telefonnummer> getTelefonnummer() {
+        return telefonnummer;
+    }
+
+    public void setTelefonnummer(Collection<Telefonnummer> telefonnummer) {
+        this.telefonnummer = telefonnummer;
     }
 
     public String getEmail() {
