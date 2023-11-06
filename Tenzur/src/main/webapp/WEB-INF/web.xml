@@ -47,7 +47,7 @@
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
     </listener>
     <listener>
-        <listener-class>de.hhbk.controllers.DatabaseController</listener-class>
+        <listener-class>de.hhbk.listeners.DatabaseListener</listener-class>
     </listener>
 
 

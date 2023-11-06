@@ -1,23 +1,40 @@
-package de.hhbk.controllers;
+package de.hhbk.managers;
 
 import de.hhbk.entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import java.util.Properties;
 
-public class DatabaseController implements ServletContextListener {
-    public static Session session;
-    private static SessionFactory sessionFactory;
+public class DatabaseManager {
+    public Session session;
+    private SessionFactory sessionFactory;
 
-    public DatabaseController() {
+    public DatabaseManager() {
+        try {
+            this.sessionFactory = new Configuration()
+                    .setProperties(getProperties())
+                    .addAnnotatedClass(User.class)
+                    .buildSessionFactory();
 
+            this.session = this.sessionFactory.openSession();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
-    private static Properties getProperties() {
+
+    public void close() {
+        try {
+            this.session.close();
+            this.sessionFactory.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private Properties getProperties() {
         Properties sessionProperties = new Properties();
 
         sessionProperties.setProperty("hibernate.auto_quote_keyword", "true");
@@ -32,29 +49,5 @@ public class DatabaseController implements ServletContextListener {
         sessionProperties.setProperty("use_sql_comments", "true");
 
         return sessionProperties;
-    }
-
-    @Override
-    public void contextInitialized(ServletContextEvent event) {
-        try {
-            sessionFactory = new Configuration()
-                    .setProperties(getProperties())
-                    .addAnnotatedClass(User.class)
-                    .buildSessionFactory();
-
-            session = sessionFactory.openSession();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent event) {
-        try {
-            session.close();
-            sessionFactory.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
     }
 }
