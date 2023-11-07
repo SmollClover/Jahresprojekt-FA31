@@ -28,7 +28,7 @@ public class UserBean extends BeanTemplate {
     //     getItemList().add(new Drucker("222888", "HP", "DeskJet 9000"));
     // }
 
-    public String test(){
+    public String test() {
         return "Test String";
     }
 

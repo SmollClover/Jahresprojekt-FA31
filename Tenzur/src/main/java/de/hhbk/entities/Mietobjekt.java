@@ -1,10 +1,9 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Mietobjekt implements Serializable {
+public class Mietobjekt extends EntityTemplate<Mietobjekt> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,14 +17,15 @@ public class Mietobjekt implements Serializable {
     private String notzifeld;
     private String strasse;
     private int strassenummer;
-    @OneToMany
+    @ManyToOne
     private Ort ort;
 
     public Mietobjekt() {
-        super();
+        super(Mietobjekt.class);
     }
 
     public Mietobjekt(String objektart, int objektnummer, String objekttyp, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, int strassenummer, Ort ort) {
+        this();
         this.objektart = objektart;
         this.objektnummer = objektnummer;
         this.objekttyp = objekttyp;

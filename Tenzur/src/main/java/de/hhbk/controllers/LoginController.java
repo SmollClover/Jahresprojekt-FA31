@@ -1,7 +1,10 @@
 package de.hhbk.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import de.hhbk.entities.Ort;
 import de.hhbk.managers.AuthorizationManager;
+import de.hhbk.managers.DatabaseManager;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,6 +52,14 @@ public class LoginController extends HttpServlet {
         } else {
             response.sendError(400);
         }
+
+        DatabaseManager DB = (DatabaseManager) request.getServletContext().getAttribute("DB");
+        Session session = DB.getSessionFactory().openSession();
+
+        Ort test = new Ort(45219, "Essen");
+        test.save(session);
+        System.out.println(test.getById(session, 1L));
+        session.close();
 
         // System.out.println(hashedPassword);
 

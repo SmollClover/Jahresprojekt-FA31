@@ -1,12 +1,11 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class Einnahme implements Serializable {
+public class Einnahme extends EntityTemplate<Einnahme> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -19,10 +18,11 @@ public class Einnahme implements Serializable {
     private double freibetrag;
 
     public Einnahme() {
-        super();
+        super(Einnahme.class);
     }
 
     public Einnahme(Collection<Mieter> mieter, Collection<Mietobjekt> objekt, double zahlungist, double zahlungssoll, double freibetrag) {
+        this();
         this.mieter = mieter;
         this.objekt = objekt;
         this.zahlungist = zahlungist;
