@@ -4,10 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @Entity
-public class Ort implements Serializable {
+public class Ort extends EntityTemplate<Ort> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,10 +14,11 @@ public class Ort implements Serializable {
     private String ort;
 
     public Ort() {
-        super();
+        super(Ort.class);
     }
 
     public Ort(int plz, String ort) {
+        this();
         this.plz = plz;
         this.ort = ort;
     }

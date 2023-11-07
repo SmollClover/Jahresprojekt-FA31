@@ -1,12 +1,11 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class User implements Serializable {
+public class User extends EntityTemplate<User> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,11 +23,12 @@ public class User implements Serializable {
     private String passwort;
 
     public User() {
-        super();
+        super(User.class);
         this.rolle = Rolle.NONE;
     }
 
     public User(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
+        this();
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;

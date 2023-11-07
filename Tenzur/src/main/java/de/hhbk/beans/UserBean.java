@@ -1,69 +1,40 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.User;
+import de.hhbk.managers.DatabaseManager;
+import org.hibernate.Session;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-
-interface Request {
-}
+import javax.servlet.ServletContext;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Named(value = "user")
 @SessionScoped
 public class UserBean extends BeanTemplate {
+    @Inject
+    private ServletContext ctx;
+    private Collection<User> users = new ArrayList<User>();
 
-    // Attributes
-    protected User user = null;
+    // @ManagedProperty("#{facesContext.externalContext.context}")
+    private ServletContext servletContext;
 
-    // Methods
     public UserBean() {
         super();
     }
 
-    // @PostConstruct
-    // public void init() {
-    //     resetItem();
-    //     getItemList().add(new Drucker("880815", "Brother", "DCP 8490"));
-    //     getItemList().add(new Drucker("990815", "Canon", "MX-925"));
-    //     getItemList().add(new Drucker("222888", "HP", "DeskJet 9000"));
-    // }
+    @PostConstruct
+    public void init() {
+        DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
+        Session session = DB.getSessionFactory().openSession();
+        this.users = new User().getList(session);
+        session.close();
+    }
 
-    public String test(){
+    public String test() {
         return "Test String";
     }
-
-    // Get User
-    public User getUser() {
-        return user;
-    }
-
-    // Set User
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    // Load User
-    public User loadUser(Integer id) {
-        return null;
-    }
-
-    // Save User
-    public void saveUser(User user) {
-
-    }
-
-    // Delete User
-    public void deleteUser(User user) {
-
-    }
-
-    // Login
-    public User login(Request request) {
-        return null;
-    }
-
-    // Logout
-    public void logout(User user) {
-    }
-    // Check Permissions
 }

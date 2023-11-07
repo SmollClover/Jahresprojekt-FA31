@@ -1,41 +1,40 @@
 package de.hhbk.managers;
 
 import de.hhbk.entities.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
 public class DatabaseManager {
-    public Session session;
     private SessionFactory sessionFactory;
 
     public DatabaseManager() {
         try {
             this.sessionFactory = new Configuration()
                     .setProperties(getProperties())
-                    .addAnnotatedClass(User.class)
-                    .addAnnotatedClass(Telefonnummer.class)
                     .addAnnotatedClass(Ort.class)
-                    .addAnnotatedClass(Mieter.class)
-                    .addAnnotatedClass(Mietobjekt.class)
-                    .addAnnotatedClass(MietobjektMieter.class)
-                    .addAnnotatedClass(Konto.class)
                     .addAnnotatedClass(Kontoinhaber.class)
+                    .addAnnotatedClass(Konto.class)
+                    .addAnnotatedClass(Telefonnummer.class)
+                    .addAnnotatedClass(Mietobjekt.class)
+                    .addAnnotatedClass(Mieter.class)
                     .addAnnotatedClass(Einnahme.class)
+                    .addAnnotatedClass(MietobjektMieter.class)
+                    .addAnnotatedClass(User.class)
                     .buildSessionFactory();
-
-            this.session = this.sessionFactory.openSession();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
     public void close() {
         try {
-            this.session.close();
             this.sessionFactory.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -51,7 +50,7 @@ public class DatabaseManager {
         sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", System.getenv("DATABASE_IP"), System.getenv("DATABASE_PORT")));
         sessionProperties.setProperty("hibernate.connection.username", System.getenv("DATABASE_USERNAME"));
         sessionProperties.setProperty("hibernate.connection.password", System.getenv("DATABASE_PASSWORD"));
-        sessionProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        sessionProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         sessionProperties.setProperty("show_sql", "true");
         sessionProperties.setProperty("format_sql", "true");
         sessionProperties.setProperty("use_sql_comments", "true");

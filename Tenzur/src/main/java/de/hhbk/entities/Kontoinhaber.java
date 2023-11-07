@@ -4,10 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @Entity
-public class Kontoinhaber implements Serializable {
+public class Kontoinhaber extends EntityTemplate<Kontoinhaber> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,10 +14,11 @@ public class Kontoinhaber implements Serializable {
     private String nachname;
 
     public Kontoinhaber() {
-        super();
+        super(Kontoinhaber.class);
     }
 
     public Kontoinhaber(String vorname, String nachname) {
+        this();
         this.vorname = vorname;
         this.nachname = nachname;
     }
