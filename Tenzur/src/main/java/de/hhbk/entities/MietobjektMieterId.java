@@ -2,16 +2,17 @@ package de.hhbk.entities;
 
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Embeddable
-public class MietobjektMieterId extends EntityTemplate<MietobjektMieterId> {
+public class MietobjektMieterId implements Serializable {
     @ManyToOne
     private Mietobjekt mietobjekt;
     @ManyToOne
     private Mieter mieter;
 
     public MietobjektMieterId() {
-        super(MietobjektMieterId.class);
+        super();
     }
 
     public MietobjektMieterId(Mietobjekt mietobjekt, Mieter mieter) {

@@ -9,14 +9,13 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
     private long id;
     private String objektart;
     private int objektnummer;
-    private String objekttyp;
     private String objektbeschreibung;
     private int wohnflaeche;
     private int qmPreisKalt;
     private int nebenkosten;
     private String notzifeld;
     private String strasse;
-    private int strassenummer;
+    private String strassenummer;
     @ManyToOne
     private Ort ort;
 
@@ -24,11 +23,10 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
         super(Mietobjekt.class);
     }
 
-    public Mietobjekt(String objektart, int objektnummer, String objekttyp, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, int strassenummer, Ort ort) {
+    public Mietobjekt(String objektart, int objektnummer, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, String strassenummer, Ort ort) {
         this();
         this.objektart = objektart;
         this.objektnummer = objektnummer;
-        this.objekttyp = objekttyp;
         this.objektbeschreibung = objektbeschreibung;
         this.wohnflaeche = wohnflaeche;
         this.qmPreisKalt = qmPreisKalt;
@@ -61,14 +59,6 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
 
     public void setObjektnummer(int objektnummer) {
         this.objektnummer = objektnummer;
-    }
-
-    public String getObjekttyp() {
-        return objekttyp;
-    }
-
-    public void setObjekttyp(String objekttyp) {
-        this.objekttyp = objekttyp;
     }
 
     public String getObjektbeschreibung() {
@@ -119,11 +109,11 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
         this.strasse = strasse;
     }
 
-    public int getStrassenummer() {
+    public String getStrassenummer() {
         return strassenummer;
     }
 
-    public void setStrassenummer(int strassenummer) {
+    public void setStrassenummer(String strassenummer) {
         this.strassenummer = strassenummer;
     }
 
