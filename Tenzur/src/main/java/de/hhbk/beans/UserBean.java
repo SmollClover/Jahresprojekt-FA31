@@ -40,7 +40,7 @@ public class UserBean extends BeanTemplate {
 
     public void context() {
         // You can now access the servletContext in your managed bean methods.
-        String contextPath = servletContext.getContextPath();
-        System.out.println(contextPath);
+        // String contextPath = servletContext.getContextPath();
+        // System.out.println(contextPath);
     }
 }
