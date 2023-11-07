@@ -2,16 +2,17 @@ package de.hhbk.beans;
 
 import de.hhbk.entities.User;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-interface Request {
-}
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Named(value = "user")
 @SessionScoped
 public class UserBean extends BeanTemplate {
-    // Methods
+    private Collection<User> users = new ArrayList<User>();
+
     public UserBean() {
         super();
     }
@@ -25,42 +26,12 @@ public class UserBean extends BeanTemplate {
     //     getItemList().add(new Drucker("222888", "HP", "DeskJet 9000"));
     // }
 
+    @PostConstruct
+    public void init() {
+
+    }
+
     public String test() {
         return "Test String";
     }
-
-    // Get User
-    public User getUser() {
-        return user;
-    }
-
-    // Set User
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    // Load User
-    public User loadUser(Integer id) {
-        return null;
-    }
-
-    // Save User
-    public void saveUser(User user) {
-
-    }
-
-    // Delete User
-    public void deleteUser(User user) {
-
-    }
-
-    // Login
-    public User login(Request request) {
-        return null;
-    }
-
-    // Logout
-    public void logout(User user) {
-    }
-    // Check Permissions
 }
