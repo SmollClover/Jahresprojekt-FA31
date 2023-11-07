@@ -31,7 +31,7 @@ public class AuthorizationManager {
         this.receiverJwk.setKeyId("tenzur");
     }
 
-    public String generateJWT() throws JoseException, MalformedClaimException {
+    public String generateJWT() throws JoseException {
         // Create the Claims, which will be the content of the JWT
         JwtClaims claims = new JwtClaims();
         claims.setIssuer("Tenzur"); // who creates the token and signs it
