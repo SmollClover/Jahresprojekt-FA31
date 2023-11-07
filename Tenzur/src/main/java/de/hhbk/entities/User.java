@@ -9,6 +9,7 @@ public class User extends EntityTemplate<User> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Enumerated(EnumType.STRING)
     private Rolle rolle;
     private String vorname;
     private String nachname;
