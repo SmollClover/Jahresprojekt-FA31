@@ -53,6 +53,9 @@
     <listener>
         <listener-class>de.hhbk.listeners.DatabaseListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>de.hhbk.listeners.AuthorizationListener</listener-class>
+    </listener>
 
 
     <!-- Mapping -->
