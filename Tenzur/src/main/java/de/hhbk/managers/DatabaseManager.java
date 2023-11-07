@@ -50,7 +50,7 @@ public class DatabaseManager {
         sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", System.getenv("DATABASE_IP"), System.getenv("DATABASE_PORT")));
         sessionProperties.setProperty("hibernate.connection.username", System.getenv("DATABASE_USERNAME"));
         sessionProperties.setProperty("hibernate.connection.password", System.getenv("DATABASE_PASSWORD"));
-        sessionProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        sessionProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         sessionProperties.setProperty("show_sql", "true");
         sessionProperties.setProperty("format_sql", "true");
         sessionProperties.setProperty("use_sql_comments", "true");
