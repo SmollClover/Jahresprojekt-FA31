@@ -1,35 +1,34 @@
 package de.hhbk.managers;
 
 import org.jose4j.jwa.AlgorithmConstraints.ConstraintType;
-import org.jose4j.jwk.RsaJsonWebKey;
-import org.jose4j.jwk.RsaJwkGenerator;
-import org.jose4j.jws.AlgorithmIdentifiers;
-import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
+import org.jose4j.jwe.JsonWebEncryption;
+import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers;
+import org.jose4j.jwk.EcJwkGenerator;
+import org.jose4j.jwk.EllipticCurveJsonWebKey;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.ErrorCodes;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
+import org.jose4j.keys.EllipticCurves;
 import org.jose4j.lang.JoseException;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AuthorizationManager {
-    private RsaJsonWebKey rsaKey = null;
+    private EllipticCurveJsonWebKey senderJwk = null;
+    private EllipticCurveJsonWebKey receiverJwk = null;
 
     public AuthorizationManager() throws JoseException {
-        this.generateRSA();
+        this.generateKeyPair();
     }
 
-    public void generateRSA() throws JoseException {
-        // Generate an RSA key pair, which will be used for signing and verification of
-        // the JWT, wrapped in a JWK
-        this.rsaKey = RsaJwkGenerator.generateJwk(4096);
+    public void generateKeyPair() throws JoseException {
+        this.senderJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
+        this.receiverJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
 
-        // Give the JWK a Key ID (kid), which is just the polite thing to do
-        this.rsaKey.setKeyId("tenzur");
+        this.senderJwk.setKeyId("tenzur");
+        this.receiverJwk.setKeyId("tenzur");
     }
 
     public String generateJWT() throws JoseException, MalformedClaimException {
@@ -43,34 +42,33 @@ public class AuthorizationManager {
         claims.setNotBeforeMinutesInThePast(2); // time before which the token is not yet valid (2 minutes ago)
         claims.setSubject("Authorization"); // the subject/principal is whom the token is about
         claims.setClaim("userID", "514"); // additional claims/attributes about the subject can be added
-        List<String> groups = Arrays.asList("group-one", "other-group", "group-three");
-        claims.setStringListClaim("groups", groups); // multi-valued claims work too and will end up as a JSON array
 
         // A JWT is a JWS and/or a JWE with JSON claims as the payload.
         // In this example it is a JWS so we create a JsonWebSignature object.
-        JsonWebSignature jws = new JsonWebSignature();
+        JsonWebEncryption jwe = new JsonWebEncryption();
 
         // The payload of the JWS is JSON content of the JWT Claims
-        jws.setPayload(claims.toJson());
+        jwe.setPayload(claims.toJson());
 
         // The JWT is signed using the private key
-        jws.setKey(this.rsaKey.getPrivateKey());
+        jwe.setKey(this.receiverJwk.getPublicKey());
 
         // Set the Key ID (kid) header because it's just the polite thing to do.
         // We only have one key in this example but a using a Key ID helps
         // facilitate a smooth key rollover process
-        jws.setKeyIdHeaderValue(this.rsaKey.getKeyId());
+        jwe.setKeyIdHeaderValue(this.receiverJwk.getKeyId());
 
         // Set the signature algorithm on the JWT/JWS that will integrity protect the
         // claims
-        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
+        jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.ECDH_ES_A256KW);
+        jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_256_CBC_HMAC_SHA_512);
 
         // Sign the JWS and produce the compact serialization or the complete JWT/JWS
         // representation, which is a string consisting of three dot ('.') separated
         // base64url-encoded parts in the form Header.Payload.Signature
         // If you wanted to encrypt it, you can simply set this jwt as the payload
         // of a JsonWebEncryption object and set the cty (Content Type) header to "jwt".
-        String jwt = jws.getCompactSerialization();
+        String jwt = jwe.getCompactSerialization();
 
         System.out.println(jwt);
         return jwt;
@@ -92,9 +90,8 @@ public class AuthorizationManager {
                 .setRequireSubject() // the JWT must have a subject claim
                 .setExpectedIssuer("Tenzur") // whom the JWT needs to have been issued by
                 .setExpectedAudience("User") // to whom the JWT is intended for
-                .setVerificationKey(this.rsaKey.getKey()) // verify the signature with the public key
-                .setJwsAlgorithmConstraints( // only allow the expected signature algorithm(s) in the given context
-                        ConstraintType.PERMIT, AlgorithmIdentifiers.RSA_USING_SHA256) // which is only RS256 here
+                .setVerificationKey(this.senderJwk.getKey()) // verify the signature with the public key
+                .setDecryptionKey(this.receiverJwk.getPrivateKey()).setVerificationKey(this.senderJwk.getPublicKey()).setJweAlgorithmConstraints(ConstraintType.PERMIT, KeyManagementAlgorithmIdentifiers.ECDH_ES_A256KW).setJweContentEncryptionAlgorithmConstraints(ConstraintType.PERMIT, ContentEncryptionAlgorithmIdentifiers.AES_256_CBC_HMAC_SHA_512) // which is only RS256 here
                 .build(); // create the JwtConsumer instance
 
         try {
