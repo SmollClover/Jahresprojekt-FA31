@@ -11,14 +11,11 @@ interface Request {
 @Named(value = "user")
 @SessionScoped
 public class UserBean extends BeanTemplate {
-
-    // Attributes
-    protected User user = null;
-
     // Methods
     public UserBean() {
         super();
     }
+
 
     // @PostConstruct
     // public void init() {
