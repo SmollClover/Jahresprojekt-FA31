@@ -34,17 +34,20 @@ public class LoginController extends HttpServlet {
         // System.out.println(username);
         // System.out.println(password);
 
-        String hashedPassword = BCrypt.withDefaults().hashToString(14, password.toCharArray());
+        AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
+
+        String hashedPassword = manager.hashPassword(password);
 
         // TODO Load Password from User Table by username/email
-        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
+        BCrypt.Result result = manager.verifyPassword(password, hashedPassword);
 
         // System.out.println(result.verified);
-        AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
         String jwt = manager.generateJWT();
         if (result.verified) {
             Cookie auth = new Cookie("authorization", jwt);
             response.addCookie(auth);
+        } else {
+            response.sendError(400);
         }
 
         // System.out.println(hashedPassword);

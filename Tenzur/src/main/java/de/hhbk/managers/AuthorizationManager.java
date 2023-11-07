@@ -1,5 +1,6 @@
 package de.hhbk.managers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.jose4j.jwa.AlgorithmConstraints.ConstraintType;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;
@@ -23,7 +24,7 @@ public class AuthorizationManager {
         this.generateKeyPair();
     }
 
-    public void generateKeyPair() throws JoseException {
+    private void generateKeyPair() throws JoseException {
         this.senderJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
         this.receiverJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
 
@@ -120,5 +121,13 @@ public class AuthorizationManager {
             }
             return false;
         }
+    }
+
+    public String hashPassword(String password) {
+        return BCrypt.withDefaults().hashToString(15, password.toCharArray());
+    }
+
+    public BCrypt.Result verifyPassword(String password, String hashedPassword) {
+        return BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
     }
 }
