@@ -42,8 +42,8 @@ public class LoginController extends HttpServlet {
         BCrypt.Result result = manager.verifyPassword(password, hashedPassword);
 
         // System.out.println(result.verified);
-        String jwt = manager.generateJWT();
         if (result.verified) {
+            String jwt = manager.generateJWT();
             Cookie auth = new Cookie("authorization", jwt);
             response.addCookie(auth);
         } else {
