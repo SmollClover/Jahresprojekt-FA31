@@ -2,16 +2,24 @@ package de.hhbk.beans;
 
 import de.hhbk.entities.User;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+// import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Named(value = "user")
-@SessionScoped
+// @SessionScoped
+@ManagedBean
 public class UserBean extends BeanTemplate {
     private Collection<User> users = new ArrayList<User>();
+
+    // @ManagedProperty("#{facesContext.externalContext.context}")
+    private ServletContext servletContext;
 
     public UserBean() {
         super();
@@ -33,5 +41,11 @@ public class UserBean extends BeanTemplate {
 
     public String test() {
         return "Test String";
+    }
+
+    public void context() {
+        // You can now access the servletContext in your managed bean methods.
+        String contextPath = servletContext.getContextPath();
+        System.out.println(contextPath);
     }
 }

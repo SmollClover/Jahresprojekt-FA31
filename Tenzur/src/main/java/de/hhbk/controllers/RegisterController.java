@@ -27,10 +27,10 @@ public class RegisterController extends HttpServlet {
         }
     }
 
-    private void register(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    private void register(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        
         
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
