@@ -32,7 +32,7 @@ public class AuthorizationManager {
         this.receiverJwk.setKeyId("tenzur");
     }
 
-    public String generateJWT() throws JoseException {
+    public String generateJWT(long userID) throws JoseException {
         // Create the Claims, which will be the content of the JWT
         JwtClaims claims = new JwtClaims();
         claims.setIssuer("Tenzur"); // who creates the token and signs it
@@ -42,7 +42,7 @@ public class AuthorizationManager {
         claims.setIssuedAtToNow(); // when the token was issued/created (now)
         claims.setNotBeforeMinutesInThePast(2); // time before which the token is not yet valid (2 minutes ago)
         claims.setSubject("Authorization"); // the subject/principal is whom the token is about
-        claims.setClaim("userID", "514"); // additional claims/attributes about the subject can be added
+        claims.setClaim("userID", userID); // additional claims/attributes about the subject can be added
 
         // A JWT is a JWS and/or a JWE with JSON claims as the payload.
         // In this example it is a JWS so we create a JsonWebSignature object.

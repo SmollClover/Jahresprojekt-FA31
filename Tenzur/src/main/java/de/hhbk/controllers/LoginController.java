@@ -1,7 +1,9 @@
 package de.hhbk.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import de.hhbk.entities.Benutzer;
 import de.hhbk.managers.AuthorizationManager;
+import de.hhbk.managers.DatabaseManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,7 +28,6 @@ public class LoginController extends HttpServlet {
         try {
             authenticate(request, response);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -33,26 +37,39 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         
         AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
+        DatabaseManager DB = (DatabaseManager) request.getServletContext().getAttribute("DB");
 
-        String hashedPassword = manager.hashPassword(password);
+        Session session = DB.getSessionFactory().openSession();
+        Benutzer user = new Benutzer().searchBenutzername(session, username);
+        System.out.println(user);
 
-        // TODO Load Password from User Table by username/email
-        BCrypt.Result result = manager.verifyPassword(password, hashedPassword);
-
-        if (result.verified) {
-            String jwt = manager.generateJWT();
-            Cookie auth = new Cookie("authorization", jwt);
-            response.addCookie(auth);
-
-            // Response Body
-            PrintWriter out = response.getWriter();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            out.print("{\"status\": \"success\"}");
-            out.flush();
-        } else {
-            response.sendError(400);
-            
+        if(user != null){
+            BCrypt.Result login_result = manager.verifyPassword(password, user.getPasswort());
+    
+            if (login_result.verified) {
+                String jwt = manager.generateJWT(user.getId());
+                Cookie auth = new Cookie("authorization", jwt);
+                response.addCookie(auth);
+    
+                // Response Body
+                PrintWriter out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                out.print("{\"status\": \"success\"}");
+                out.flush();
+            } else {
+                // response.sendError(400);
+                
+                // Response Body
+                PrintWriter out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                out.print("{\"status\": \"failed\"}");
+                out.flush();
+            }
+        }else{
+            // response.sendError(400);
+                
             // Response Body
             PrintWriter out = response.getWriter();
             response.setContentType("application/json");
@@ -60,5 +77,6 @@ public class LoginController extends HttpServlet {
             out.print("{\"status\": \"failed\"}");
             out.flush();
         }
+        
     }
 }

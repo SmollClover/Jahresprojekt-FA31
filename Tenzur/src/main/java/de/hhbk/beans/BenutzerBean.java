@@ -23,9 +23,6 @@ public class BenutzerBean extends BeanTemplate {
         return benutzer;
     }
 
-    // @ManagedProperty("#{facesContext.externalContext.context}")
-    private ServletContext servletContext;
-
     public BenutzerBean() {
         super();
     }
