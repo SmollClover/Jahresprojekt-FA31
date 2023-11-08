@@ -12,6 +12,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "log_statement=all"]
 
 volumes:
   data:
