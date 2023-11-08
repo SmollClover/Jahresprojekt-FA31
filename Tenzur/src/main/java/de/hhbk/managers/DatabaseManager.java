@@ -36,7 +36,7 @@ public class DatabaseManager {
                     .addAnnotatedClass(Mieter.class)
                     .addAnnotatedClass(Einnahme.class)
                     .addAnnotatedClass(MietobjektMieter.class)
-                    .addAnnotatedClass(User.class)
+                    .addAnnotatedClass(Benutzer.class)
                     .buildSessionFactory();
             if (stage.equals("development")) this.generateDummyData();
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class DatabaseManager {
                         && new Mieter().getList(session).isEmpty()
                         && new Einnahme().getList(session).isEmpty()
                         && new MietobjektMieter().getList(session).isEmpty()
-                        && new User().getList(session).isEmpty()
+                        && new Benutzer().getList(session).isEmpty()
         )) return;
 
         Ort OrtEssen = new Ort(45219, "Essen").save(session);
@@ -138,10 +138,10 @@ public class DatabaseManager {
         MietobjektMieter MietobjektMieterBurak = new MietobjektMieter(new MietobjektMieterId(MietobjektBurak, MieterBurak), new Date()).save(session);
 
         // Passwort = passwort
-        User UserTobias = new User("Tobias", "Ochott", "Unter der Brück", "5a", OrtRostock, List.of(new Telefonnummer[]{TelefonnummerTobias}), "tobegeiler@gmail.com", "tobias", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MIETER).save(session);
-        User UserLars = new User("Lars", "Belitz", "Königsalle", "420", OrtFunktown, List.of(new Telefonnummer[]{TelefonnummerLars}), "lars.ist.cool@hotmail.com", "lars", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.ADMIN).save(session);
-        User UserLaura = new User("Laura", "Boniecki", "Jede Straße", "0", OrtBerlin, List.of(new Telefonnummer[]{TelefonnummerLaura}), "laura@web.de", "laura", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.VERMIETER).save(session);
-        User UserRobin = new User("Robin", "Walter", "???", "666", OrtBadbeuren, List.of(new Telefonnummer[]{TelefonnummerRobin}), "ro@bot.email", "robin", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MITARBEITER).save(session);
-        User UserBurak = new User("Burak", "Kablan", "Am Brunnen", "12", OrtEssen, List.of(new Telefonnummer[]{TelefonnummerBurak}), "burak@kablan.cool", "burak", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.NONE).save(session);
+        Benutzer BenutzerTobias = new Benutzer("Tobias", "Ochott", "Unter der Brück", "5a", OrtRostock, List.of(new Telefonnummer[]{TelefonnummerTobias}), "tobegeiler@gmail.com", "tobias", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MIETER).save(session);
+        Benutzer BenutzerLars = new Benutzer("Lars", "Belitz", "Königsalle", "420", OrtFunktown, List.of(new Telefonnummer[]{TelefonnummerLars}), "lars.ist.cool@hotmail.com", "lars", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.ADMIN).save(session);
+        Benutzer BenutzerLaura = new Benutzer("Laura", "Boniecki", "Jede Straße", "0", OrtBerlin, List.of(new Telefonnummer[]{TelefonnummerLaura}), "laura@web.de", "laura", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.VERMIETER).save(session);
+        Benutzer BenutzerRobin = new Benutzer("Robin", "Walter", "???", "666", OrtBadbeuren, List.of(new Telefonnummer[]{TelefonnummerRobin}), "ro@bot.email", "robin", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MITARBEITER).save(session);
+        Benutzer BenutzerBurak = new Benutzer("Burak", "Kablan", "Am Brunnen", "12", OrtEssen, List.of(new Telefonnummer[]{TelefonnummerBurak}), "burak@kablan.cool", "burak", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.NONE).save(session);
     }
 }
