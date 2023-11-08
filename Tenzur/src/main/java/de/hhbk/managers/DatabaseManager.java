@@ -17,11 +17,13 @@ public class DatabaseManager {
     private SessionFactory sessionFactory;
 
 
+
     public DatabaseManager(String ip, String port, String username, String password, String stage) {
         this.ip = ip;
         this.port = port;
         this.username = username;
         this.password = password;
+
 
         try {
             this.sessionFactory = new Configuration()
@@ -36,6 +38,7 @@ public class DatabaseManager {
                     .addAnnotatedClass(MietobjektMieter.class)
                     .addAnnotatedClass(Benutzer.class)
                     .buildSessionFactory();
+
             if (stage.equals("development")) this.generateDummyData();
         } catch (Exception e) {
             e.printStackTrace();
