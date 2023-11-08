@@ -9,6 +9,7 @@ public class User extends EntityTemplate<User> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Enumerated(EnumType.STRING)
     private Rolle rolle;
     private String vorname;
     private String nachname;
@@ -38,6 +39,11 @@ public class User extends EntityTemplate<User> {
         this.email = email;
         this.benutzername = benutzername;
         this.passwort = passwort;
+    }
+
+    public User(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
+        this(vorname, nachname, strasse, strassennummer, ort, telefonnummer, email, benutzername, passwort);
+        this.rolle = rolle;
     }
 
     public long getId() {

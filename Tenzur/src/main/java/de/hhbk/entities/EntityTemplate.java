@@ -19,10 +19,11 @@ public class EntityTemplate<T> implements Serializable {
         return result;
     }
 
-    public void save(Session session) {
+    public T save(Session session) {
         session.beginTransaction();
         session.save(this);
         session.getTransaction().commit();
+        return (T) this;
     }
 
     public void delete(Session session) {
