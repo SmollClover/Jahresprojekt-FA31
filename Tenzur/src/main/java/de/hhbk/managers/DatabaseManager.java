@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -15,6 +16,7 @@ public class DatabaseManager {
     private final String username;
     private final String password;
     private SessionFactory sessionFactory;
+    
 
     public DatabaseManager(String ip, String port, String username, String password, String stage) {
         this.ip = ip;
@@ -23,6 +25,7 @@ public class DatabaseManager {
         this.password = password;
 
         try {
+            System.out.println(System.getenv("DATABASE_IP"));
             this.sessionFactory = new Configuration()
                     .setProperties(getProperties())
                     .addAnnotatedClass(Ort.class)
