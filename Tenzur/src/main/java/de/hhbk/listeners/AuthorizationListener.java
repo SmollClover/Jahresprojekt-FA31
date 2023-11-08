@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AuthorizationListener implements ServletContextListener {
+    @Override
     public void contextInitialized(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
 
