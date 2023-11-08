@@ -34,7 +34,7 @@ public class BenutzerBean extends BeanTemplate {
     public void init() {
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.benutzer = new Benutzer().getList(session);
+        this.benutzer = new Benutzer().getAll(session);
         session.close();
     }
 

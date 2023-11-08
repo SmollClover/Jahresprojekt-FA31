@@ -16,16 +16,34 @@ public class EntityTemplate<T> implements Serializable {
         session.beginTransaction();
         T result = session.get(clazz, id);
         session.getTransaction().commit();
+
         return result;
     }
 
-    public T find(Session session, T search) {
+    public T getSingle(Session session, String column, String value) {
         session.beginTransaction();
-        T result = session.find(clazz, search);
+        T result = (T) session.createQuery(String.format("FROM %s WHERE %s = %s", clazz.getName(), column, value)).uniqueResult();
         session.getTransaction().commit();
+
         return result;
     }
 
+    public Collection<T> getMultiple(Session session, String column, String value) {
+        session.beginTransaction();
+        Collection<T> result = session.createQuery(String.format("FROM %s WHERE %s = %s", clazz.getName(), column, value)).list();
+        session.getTransaction().commit();
+
+        return result;
+    }
+
+    public Collection<T> getAll(Session session) {
+        session.beginTransaction();
+        Collection<T> result = session.createQuery("FROM " + clazz.getName(), clazz).list();
+        session.getTransaction().commit();
+
+        return result;
+    }
+    
     public T save(Session session) {
         session.beginTransaction();
         session.save(this);
@@ -37,14 +55,5 @@ public class EntityTemplate<T> implements Serializable {
         session.beginTransaction();
         session.delete(this);
         session.getTransaction().commit();
-    }
-
-    public Collection<T> getList(Session session) {
-        session.beginTransaction();
-        Collection<T> result = session.createQuery("FROM " + clazz.getName(), clazz).list();
-        System.out.println(result);
-        session.getTransaction().commit();
-
-        return result;
     }
 }
