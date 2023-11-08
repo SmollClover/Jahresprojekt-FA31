@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class DatabaseManager {
+    private final Dotenv dotenv = Dotenv.configure().directory("/").ignoreIfMissing().load();
     private SessionFactory sessionFactory;
 
     public DatabaseManager() {
@@ -27,7 +28,7 @@ public class DatabaseManager {
                     .addAnnotatedClass(MietobjektMieter.class)
                     .addAnnotatedClass(User.class)
                     .buildSessionFactory();
-            if (System.getenv("STAGE").equalsIgnoreCase("development")) this.generateDummyData();
+            if (dotenv.get("STAGE", System.getenv("STAGE")).equalsIgnoreCase("development")) this.generateDummyData();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(1);
@@ -47,12 +48,11 @@ public class DatabaseManager {
     }
 
     private Properties getProperties() {
-        Dotenv dotenv = Dotenv.configure().directory("/").ignoreIfMissing().load();
         Properties sessionProperties = new Properties();
 
-        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", dotenv.get("DATABASE_IP", System.getenv("DATABASE_IP")), dotenv.get("DATABASE_PORT", System.getenv("DATABASE_PORT"))));
-        sessionProperties.setProperty("hibernate.connection.username", dotenv.get("DATABASE_USERNAME", System.getenv("DATABASE_USERNAME")));
-        sessionProperties.setProperty("hibernate.connection.password", dotenv.get("DATABASE_PASSWORD", System.getenv("DATABASE_PASSWORD")));
+        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", this.dotenv.get("DATABASE_IP", System.getenv("DATABASE_IP")), this.dotenv.get("DATABASE_PORT", System.getenv("DATABASE_PORT"))));
+        sessionProperties.setProperty("hibernate.connection.username", this.dotenv.get("DATABASE_USERNAME", System.getenv("DATABASE_USERNAME")));
+        sessionProperties.setProperty("hibernate.connection.password", this.dotenv.get("DATABASE_PASSWORD", System.getenv("DATABASE_PASSWORD")));
         sessionProperties.setProperty("hibernate.auto_quote_keyword", "true");
         sessionProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         sessionProperties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
