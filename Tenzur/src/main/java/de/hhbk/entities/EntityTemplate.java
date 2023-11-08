@@ -19,6 +19,13 @@ public class EntityTemplate<T> implements Serializable {
         return result;
     }
 
+    public T find(Session session, T search) {
+        session.beginTransaction();
+        T result = session.find(clazz, search);
+        session.getTransaction().commit();
+        return result;
+    }
+
     public T save(Session session) {
         session.beginTransaction();
         session.save(this);
