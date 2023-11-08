@@ -30,12 +30,21 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
+<<<<<<< HEAD
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+=======
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+	vertical-align: baseline;
+>>>>>>> d176b96 (fix sidebar, add favicon)
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -45,8 +54,12 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
+<<<<<<< HEAD
     line-height: 1;
     font: 16px 'Inter';
+=======
+	line-height: 1;
+>>>>>>> d176b96 (fix sidebar, add favicon)
 }
 
 ol, ul {
@@ -70,6 +83,7 @@ table {
 
 html {
     height: 100%;
+    font: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
 .main-body {
@@ -79,10 +93,10 @@ html {
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
     height: 100%;
-    width: 250px;
+    flex: 0 0 400px;
 }
 
 .wrapper {
@@ -93,7 +107,12 @@ html {
 }
 
 .company-logo {
+<<<<<<< HEAD
     margin: 50px auto;
+=======
+    margin:50px auto;
+    height:50px;
+>>>>>>> d176b96 (fix sidebar, add favicon)
 }
 
 .menu {
@@ -128,6 +147,25 @@ html {
     margin-right: 10px;
 }
 
+.main {
+    padding-top: 150px;
+    padding-right: 50px;
+}
+
 body .ui-tabmenu .ui-tabmenu-nav {
-    overflow: hidden !important;
+    overflow : hidden !important; 
+    background: none !important;
+}
+
+
+body .ui-tabmenu.ui-tabs-left .ui-tabmenu-nav:before {
+    display:none !important;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+    background: none !important;
+}
+
+body .ui-tabmenu.ui-tabs-left .ui-tabmenu-nav .ui-tabmenuitem {
+    border: none !important;
 }
