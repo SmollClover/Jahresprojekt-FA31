@@ -17,7 +17,11 @@ import java.util.Collection;
 public class BenutzerBean extends BeanTemplate {
     @Inject
     private ServletContext ctx;
-    private Collection<Benutzer> benutzers = new ArrayList<Benutzer>();
+    private Collection<Benutzer> benutzer = new ArrayList<Benutzer>();
+
+    public Collection<Benutzer> getUsers() {
+        return benutzer;
+    }
 
     // @ManagedProperty("#{facesContext.externalContext.context}")
     private ServletContext servletContext;
@@ -30,7 +34,7 @@ public class BenutzerBean extends BeanTemplate {
     public void init() {
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.benutzers = new Benutzer().getList(session);
+        this.benutzer = new Benutzer().getList(session);
         session.close();
     }
 

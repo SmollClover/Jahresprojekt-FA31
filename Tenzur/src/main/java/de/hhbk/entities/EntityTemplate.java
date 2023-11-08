@@ -35,6 +35,7 @@ public class EntityTemplate<T> implements Serializable {
     public Collection<T> getList(Session session) {
         session.beginTransaction();
         Collection<T> result = session.createQuery("FROM " + clazz.getName(), clazz).list();
+        System.out.println(result);
         session.getTransaction().commit();
 
         return result;

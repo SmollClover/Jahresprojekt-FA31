@@ -24,8 +24,9 @@
         <div class="ui-g">
             <div class="ui-g-12">
                 <div class="card">
+                    <p>#{user.getUsers()}</p>
                     <h:form id="contentForm">
-
+                        
                         <p:menubar>
                             <p:menuitem value="Hinzuf&uuml;gen" icon="fa fa-plus" oncomplete="PF('dlgEdit').show();"
                                         action="#{benutzer.resetItem()}" update=":editModalDialogForm"/>
@@ -35,7 +36,7 @@
                         <h1 style="margin-top: 20px;"><i class="layout-menuitem-icon pi pi-fw pi-users"></i>&nbsp;Benutzer
                         </h1>
 
-                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}" style="width: 100%;">
+                        <p:dataTable id="itemTable" var="item" value="#{user.getUsers()}" style="width: 100%;">
                             <p:column headerText="" style="width: 10px;">
                                 <p:outputPanel style="display:block" rendered="#{item.isWeiblich()}">
                                     <i class="fa fa-female fa-fw"></i>

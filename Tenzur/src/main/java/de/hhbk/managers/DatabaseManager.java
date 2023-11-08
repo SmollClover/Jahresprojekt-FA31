@@ -25,7 +25,6 @@ public class DatabaseManager {
         this.password = password;
 
         try {
-            System.out.println(System.getenv("DATABASE_IP"));
             this.sessionFactory = new Configuration()
                     .setProperties(getProperties())
                     .addAnnotatedClass(Ort.class)
