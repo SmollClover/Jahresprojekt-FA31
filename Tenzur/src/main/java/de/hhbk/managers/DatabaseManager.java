@@ -13,6 +13,7 @@ public class DatabaseManager {
     private SessionFactory sessionFactory;
 
     public DatabaseManager() {
+        System.out.println("ENVS: " + System.getenv("DATABASE_IP"));
         try {
             this.sessionFactory = new Configuration()
                     .setProperties(getProperties())
@@ -26,10 +27,11 @@ public class DatabaseManager {
                     .addAnnotatedClass(MietobjektMieter.class)
                     .addAnnotatedClass(User.class)
                     .buildSessionFactory();
+            System.out.println("ENVS: " + System.getenv("DATABASE_IP"));
             if (System.getenv("STAGE").equalsIgnoreCase("development")) this.generateDummyData();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.exit(1);
+            //System.exit(1);
         }
     }
 
@@ -51,9 +53,12 @@ public class DatabaseManager {
         sessionProperties.setProperty("hibernate.auto_quote_keyword", "true");
         sessionProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         sessionProperties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", System.getenv("DATABASE_IP"), System.getenv("DATABASE_PORT")));
-        sessionProperties.setProperty("hibernate.connection.username", System.getenv("DATABASE_USERNAME"));
-        sessionProperties.setProperty("hibernate.connection.password", System.getenv("DATABASE_PASSWORD"));
+        //sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", System.getenv("DATABASE_IP"), System.getenv("DATABASE_PORT")));
+        //sessionProperties.setProperty("hibernate.connection.username", System.getenv("DATABASE_USERNAME"));
+        //sessionProperties.setProperty("hibernate.connection.password", System.getenv("DATABASE_PASSWORD"));
+        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", "localhost", "5432"));
+        sessionProperties.setProperty("hibernate.connection.username", "postgres");
+        sessionProperties.setProperty("hibernate.connection.password", "securepassword123");
         sessionProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         sessionProperties.setProperty("show_sql", "true");
         sessionProperties.setProperty("format_sql", "true");

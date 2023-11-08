@@ -30,21 +30,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-<<<<<<< HEAD
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-=======
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 	vertical-align: baseline;
->>>>>>> d176b96 (fix sidebar, add favicon)
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -54,12 +45,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-<<<<<<< HEAD
-    line-height: 1;
-    font: 16px 'Inter';
-=======
 	line-height: 1;
->>>>>>> d176b96 (fix sidebar, add favicon)
 }
 
 ol, ul {
@@ -112,12 +98,10 @@ h1{
 }
 
 .company-logo {
-<<<<<<< HEAD
-    margin: 50px auto;
-=======
+
     margin:50px auto;
     height:50px;
->>>>>>> d176b96 (fix sidebar, add favicon)
+
 }
 
 .menu {
