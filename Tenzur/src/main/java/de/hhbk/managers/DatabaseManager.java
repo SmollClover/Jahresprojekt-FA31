@@ -15,7 +15,7 @@ public class DatabaseManager {
     private final String username;
     private final String password;
     private SessionFactory sessionFactory;
-    
+
 
     public DatabaseManager(String ip, String port, String username, String password, String stage) {
         this.ip = ip;
@@ -76,15 +76,15 @@ public class DatabaseManager {
         Session session = this.sessionFactory.openSession();
 
         if (!(
-                new Ort().getAll(session).isEmpty()
-                        && new Kontoinhaber().getAll(session).isEmpty()
-                        && new Konto().getAll(session).isEmpty()
-                        && new Telefonnummer().getAll(session).isEmpty()
-                        && new Mietobjekt().getAll(session).isEmpty()
-                        && new Mieter().getAll(session).isEmpty()
-                        && new Einnahme().getAll(session).isEmpty()
-                        && new MietobjektMieter().getAll(session).isEmpty()
-                        && new Benutzer().getAll(session).isEmpty()
+                new Ort().getList(session).isEmpty()
+                        && new Kontoinhaber().getList(session).isEmpty()
+                        && new Konto().getList(session).isEmpty()
+                        && new Telefonnummer().getList(session).isEmpty()
+                        && new Mietobjekt().getList(session).isEmpty()
+                        && new Mieter().getList(session).isEmpty()
+                        && new Einnahme().getList(session).isEmpty()
+                        && new MietobjektMieter().getList(session).isEmpty()
+                        && new Benutzer().getList(session).isEmpty()
         )) return;
 
         Ort OrtEssen = new Ort(45219, "Essen").save(session);

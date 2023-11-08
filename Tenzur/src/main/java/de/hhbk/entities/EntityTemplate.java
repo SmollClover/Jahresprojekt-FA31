@@ -20,23 +20,7 @@ public class EntityTemplate<T> implements Serializable {
         return result;
     }
 
-    public T getSingle(Session session, String column, String value) {
-        session.beginTransaction();
-        T result = (T) session.createQuery("FROM " + clazz.getName() + " WHERE :column = :value").setParameter("column", column).setParameter("value", value).uniqueResult();
-        session.getTransaction().commit();
-
-        return result;
-    }
-
-    public Collection<T> getMultiple(Session session, String column, String value) {
-        session.beginTransaction();
-        Collection<T> result = session.createQuery("FROM " + clazz.getName() + " WHERE :column = :value").setParameter("column", column).setParameter("value", value).list();
-        session.getTransaction().commit();
-
-        return result;
-    }
-
-    public Collection<T> getAll(Session session) {
+    public Collection<T> getList(Session session) {
         session.beginTransaction();
         Collection<T> result = session.createQuery("FROM " + clazz.getName(), clazz).list();
         session.getTransaction().commit();
