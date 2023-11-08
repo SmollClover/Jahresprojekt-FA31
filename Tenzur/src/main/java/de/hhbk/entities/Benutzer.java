@@ -1,5 +1,7 @@
 package de.hhbk.entities;
 
+import org.hibernate.Session;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,6 +46,14 @@ public class Benutzer extends EntityTemplate<Benutzer> {
     public Benutzer(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
         this(vorname, nachname, strasse, strassennummer, ort, telefonnummer, email, benutzername, passwort);
         this.rolle = rolle;
+    }
+
+    public Benutzer searchBenutzername(Session session, String benutzername) {
+        session.beginTransaction();
+        Benutzer result = session.createQuery("FROM Benutzer b WHERE b.benutzername = :username", Benutzer.class).setParameter("username", benutzername).uniqueResult();
+        session.getTransaction().commit();
+
+        return result;
     }
 
     public long getId() {
