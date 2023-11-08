@@ -22,7 +22,7 @@ public class EntityTemplate<T> implements Serializable {
 
     public T getSingle(Session session, String column, String value) {
         session.beginTransaction();
-        T result = (T) session.createQuery(String.format("FROM %s WHERE %s = %s", clazz.getName(), column, value)).uniqueResult();
+        T result = (T) session.createQuery("FROM " + clazz.getName() + " WHERE :column = :value").setParameter("column", column).setParameter("value", value).uniqueResult();
         session.getTransaction().commit();
 
         return result;
@@ -30,7 +30,7 @@ public class EntityTemplate<T> implements Serializable {
 
     public Collection<T> getMultiple(Session session, String column, String value) {
         session.beginTransaction();
-        Collection<T> result = session.createQuery(String.format("FROM %s WHERE %s = %s", clazz.getName(), column, value)).list();
+        Collection<T> result = session.createQuery("FROM " + clazz.getName() + " WHERE :column = :value").setParameter("column", column).setParameter("value", value).list();
         session.getTransaction().commit();
 
         return result;
@@ -43,7 +43,7 @@ public class EntityTemplate<T> implements Serializable {
 
         return result;
     }
-    
+
     public T save(Session session) {
         session.beginTransaction();
         session.save(this);
