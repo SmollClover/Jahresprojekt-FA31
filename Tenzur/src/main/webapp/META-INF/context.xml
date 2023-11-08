@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/Tenzur"/>
+<Environment name="DATABASE_IP" value="localhost" type="java.lang.String" override="false"/>
+<Environment name="DATABASE_PORT" value="5432" type="java.lang.String" override="false"/>
+<Environment name="DATABASE_USERNAME" value="postgres" type="java.lang.String" override="false"/>
+<Environment name="DATABASE_PASSWORD" value="securepassword123" type="java.lang.String" override="false"/>
