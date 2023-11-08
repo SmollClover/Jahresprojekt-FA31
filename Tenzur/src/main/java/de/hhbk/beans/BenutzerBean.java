@@ -1,6 +1,6 @@
 package de.hhbk.beans;
 
-import de.hhbk.entities.User;
+import de.hhbk.entities.Benutzer;
 import de.hhbk.managers.DatabaseManager;
 import org.hibernate.Session;
 
@@ -12,17 +12,17 @@ import javax.servlet.ServletContext;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Named(value = "user")
+@Named(value = "benutzer")
 @SessionScoped
-public class UserBean extends BeanTemplate {
+public class BenutzerBean extends BeanTemplate {
     @Inject
     private ServletContext ctx;
-    private Collection<User> users = new ArrayList<User>();
+    private Collection<Benutzer> benutzers = new ArrayList<Benutzer>();
 
     // @ManagedProperty("#{facesContext.externalContext.context}")
     private ServletContext servletContext;
 
-    public UserBean() {
+    public BenutzerBean() {
         super();
     }
 
@@ -30,7 +30,7 @@ public class UserBean extends BeanTemplate {
     public void init() {
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.users = new User().getList(session);
+        this.benutzers = new Benutzer().getList(session);
         session.close();
     }
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class User extends EntityTemplate<User> {
+public class Benutzer extends EntityTemplate<Benutzer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,12 +23,12 @@ public class User extends EntityTemplate<User> {
     private String benutzername;
     private String passwort;
 
-    public User() {
-        super(User.class);
+    public Benutzer() {
+        super(Benutzer.class);
         this.rolle = Rolle.NONE;
     }
 
-    public User(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
+    public Benutzer(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
         this();
         this.vorname = vorname;
         this.nachname = nachname;
@@ -41,7 +41,7 @@ public class User extends EntityTemplate<User> {
         this.passwort = passwort;
     }
 
-    public User(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
+    public Benutzer(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
         this(vorname, nachname, strasse, strassennummer, ort, telefonnummer, email, benutzername, passwort);
         this.rolle = rolle;
     }
