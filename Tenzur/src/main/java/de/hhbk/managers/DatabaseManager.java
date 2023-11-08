@@ -1,6 +1,7 @@
 package de.hhbk.managers;
 
 import de.hhbk.entities.*;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -46,14 +47,15 @@ public class DatabaseManager {
     }
 
     private Properties getProperties() {
+        Dotenv dotenv = Dotenv.configure().directory("/").ignoreIfMissing().load();
         Properties sessionProperties = new Properties();
 
+        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", dotenv.get("DATABASE_IP", System.getenv("DATABASE_IP")), dotenv.get("DATABASE_PORT", System.getenv("DATABASE_PORT"))));
+        sessionProperties.setProperty("hibernate.connection.username", dotenv.get("DATABASE_USERNAME", System.getenv("DATABASE_USERNAME")));
+        sessionProperties.setProperty("hibernate.connection.password", dotenv.get("DATABASE_PASSWORD", System.getenv("DATABASE_PASSWORD")));
         sessionProperties.setProperty("hibernate.auto_quote_keyword", "true");
         sessionProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         sessionProperties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-        sessionProperties.setProperty("hibernate.connection.url", String.format("jdbc:postgresql://%s:%s/tenzur", System.getenv("DATABASE_IP"), System.getenv("DATABASE_PORT")));
-        sessionProperties.setProperty("hibernate.connection.username", System.getenv("DATABASE_USERNAME"));
-        sessionProperties.setProperty("hibernate.connection.password", System.getenv("DATABASE_PASSWORD"));
         sessionProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         sessionProperties.setProperty("show_sql", "true");
         sessionProperties.setProperty("format_sql", "true");
