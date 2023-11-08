@@ -86,6 +86,11 @@ html {
     font: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
+h1{
+    font-size:2rem;
+    font-family: "Segoe UI";
+}
+
 .main-body {
     height: 100%
 }
@@ -168,4 +173,12 @@ body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
 
 body .ui-tabmenu.ui-tabs-left .ui-tabmenu-nav .ui-tabmenuitem {
     border: none !important;
+}
+
+body .ui-datatable .ui-datatable-data>tr {
+    background: none !important;
+}
+
+body .ui-datatable thead th {
+    background: none !important;
 }
