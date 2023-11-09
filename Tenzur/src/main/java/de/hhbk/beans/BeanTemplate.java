@@ -7,6 +7,7 @@ import de.hhbk.managers.AuthorizationManager;
 import de.hhbk.managers.DatabaseManager;
 import org.hibernate.Session;
 import org.jose4j.jwt.MalformedClaimException;
+import org.jose4j.lang.JoseException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -58,7 +59,6 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
             context.redirect(context.getRequestContextPath());
             return;
         }
-        System.out.println(userID);
 
         DatabaseManager DB = (DatabaseManager) this.ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
