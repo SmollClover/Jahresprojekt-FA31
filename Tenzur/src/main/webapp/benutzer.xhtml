@@ -27,7 +27,7 @@
                     <h:form id="contentForm">
                         <p:menubar style="width:fit-content;">
                             <p:menuitem value="Hinzuf&uuml;gen" icon="fa fa-plus" oncomplete="PF('dlgEdit').show();"
-                                        action="#{benutzer.test()}" update=":editModalDialogForm"/>
+                                        action="#{benutzer.resetItem()}" update=":editModalDialogForm"/>
                         </p:menubar>
 
                         <br/>
@@ -35,14 +35,6 @@
                         </h1>
                         <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}"
                                      style="width: 100%; border-radius:4px;">
-                            <p:column headerText="" style="width: 10px; border-radius:2px;">
-                                <p:outputPanel style="display:block" rendered="#{false}">
-                                    <i class="fa fa-female fa-fw"></i>
-                                </p:outputPanel>
-                                <p:outputPanel style="display:block" rendered="#{true}">
-                                    <i class="fa fa-male fa-fw"></i>
-                                </p:outputPanel>
-                            </p:column>
                             <p:column headerText="Name" style="width: 350px;">
                                 <b><h:outputText value="#{item.vorname} #{item.nachname}"/></b>
                             </p:column>
@@ -50,12 +42,12 @@
                                 <h:outputText value="#{item.strasse} #{item.strassennummer}"/>
                             </p:column>
                             <p:column style="width: 110px; text-align: center;">
-                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.test(item)}"
+                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
                                                update=":editModalDialogForm">
                                     <i class="fa fa-wrench fa-fw"></i>
                                 </p:commandLink>
                                 &nbsp;
-                                <p:commandLink action="#{benutzer.test(item)}" update=":contentForm">
+                                <p:commandLink action="#{benutzer.removeItem(item)}" update=":contentForm">
                                     <i class="fa fa-trash fa-fw"></i>
                                     <p:confirm header="Eintrag l&ouml;schen?"
                                                message="Sollen der Eintrag gel&ouml;scht werden?"
@@ -99,12 +91,6 @@
                             <p:outputLabel for="ip_id" value="ID"/>
                             <p:inputText id="ip_id" value="#{benutzer.item.id}" style="width: 100%;" disabled="true"/>
 
-                            <p:outputLabel for="ip_anrede" value="Anrede"/>
-                            <p:selectOneMenu id="ip_anrede" value="#{benutzer.item.anrede}" style="width: 100%;">
-                                <f:selectItems value="#{benutzer.anredeOptionen}" var="rvar"
-                                               itemLabel="#{rvar.anrede}"/>
-                            </p:selectOneMenu>
-
                             <p:outputLabel for="ip_vorname" value="Vorname"/>
                             <p:inputText id="ip_vorname" value="#{benutzer.item.vorname}" style="width: 100%;"/>
 
@@ -137,7 +123,7 @@
                     </p:scrollPanel>
                     <br/><br/>
 
-                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.test()}"
+                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.addItem()}"
                                      oncomplete="PF('dlgEdit').hide();" update=":contentForm, messageBox"/>
                     &nbsp;
                     <p:commandButton value="Schlie&szlig;en" style="width: 120px;" onclick="PF('dlgEdit').hide();"

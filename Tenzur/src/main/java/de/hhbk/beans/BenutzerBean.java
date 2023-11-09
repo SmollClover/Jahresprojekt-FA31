@@ -30,17 +30,15 @@ public class BenutzerBean extends BeanTemplate {
 
     @PostConstruct
     public void init() {
+        this.loadItemList();
+    }
+
+    public void loadItemList() {
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
         this.itemList = new Benutzer().getList(session);
         session.close();
     }
-
-    public String test() {
-        return "Test String";
-    }
-
-    public String test(Benutzer p) { return "Test String"; }
 
     public Collection<Benutzer> getItemList() {
         return itemList;
@@ -48,5 +46,29 @@ public class BenutzerBean extends BeanTemplate {
 
     public Benutzer getItem() {
         return item;
+    }
+
+    public void setItem(Benutzer item) {
+        this.item = item;
+    }
+
+    public void resetItem() {
+        this.item = new Benutzer();
+    }
+
+    public void addItem() {
+        if (this.itemList.contains(this.item)) return;
+
+        DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
+        Session session = DB.getSessionFactory().openSession();
+        this.item.save(session);
+        session.close();
+
+        this.itemList.add(this.item);
+        this.resetItem();
+    }
+
+    public void removeItem(Benutzer item) {
+        this.itemList.remove(this.item);
     }
 }
