@@ -46,14 +46,12 @@ public class LoginController extends HttpServlet {
 
             if (login_result.verified) {
                 String jwt = manager.generateJWT(user.getId());
-                Cookie auth = new Cookie("authorization", jwt);
-                response.addCookie(auth);
 
                 // Response Body
                 PrintWriter out = response.getWriter();
-                response.setContentType("application/json");
+                response.setContentType("plain/text");
                 response.setCharacterEncoding("UTF-8");
-                out.print("{\"status\": \"success\"}");
+                out.print(jwt);
                 out.flush();
             } else {
                 System.out.println("Passwort falsch");
