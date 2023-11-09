@@ -25,6 +25,7 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
     @Inject
     ServletContext ctx;
     private Class<T> clazz = null;
+    private Rolle berechtigung = Rolle.NONE;
     private Collection<T> itemList = new ArrayList<T>();
     private T item = null;
 
@@ -34,32 +35,30 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
     public BeanTemplate(Class<T> clazz, Rolle berechtigung) {
         super();
         this.clazz = clazz;
-
-        try {
-            this.checkPermission(berechtigung);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.berechtigung = berechtigung;
     }
 
-    private void checkPermission(Rolle berechtigung) throws IOException, MalformedClaimException {
-        if (berechtigung == Rolle.NONE) return;
+    public void checkPermission() throws IOException, MalformedClaimException {
+        if (this.berechtigung == Rolle.NONE) return;
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> cookies = context.getRequestCookieMap();
 
         Cookie authCookie = (Cookie) cookies.get("authorization");
-        if (authCookie == null) context.redirect(context.getRequestContextPath());
-        assert authCookie != null;
+        if (authCookie == null) {
+            context.redirect(context.getRequestContextPath());
+            return;
+        }
 
         AuthorizationManager manager = (AuthorizationManager) this.ctx.getAttribute("Auth");
         String userID = manager.validateToken(authCookie.getValue());
         if (userID == null) {
-            authCookie.setMaxAge(0);
+            authCookie.setMaxAge(1);
             context.addResponseCookie(authCookie.getName(), null, null);
             context.redirect(context.getRequestContextPath());
+            return;
         }
-        assert userID != null;
+        System.out.println(userID);
 
         DatabaseManager DB = (DatabaseManager) this.ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
@@ -67,13 +66,13 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
         session.close();
 
         if (benutzer == null) {
-            authCookie.setMaxAge(0);
+            authCookie.setMaxAge(1);
             context.addResponseCookie(authCookie.getName(), null, null);
             context.redirect(context.getRequestContextPath());
+            return;
         }
-        assert benutzer != null;
 
-        if (benutzer.getRolle().ordinal() < berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
+        if (benutzer.getRolle().ordinal() < this.berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
     }
 
     public void loadItemList() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {

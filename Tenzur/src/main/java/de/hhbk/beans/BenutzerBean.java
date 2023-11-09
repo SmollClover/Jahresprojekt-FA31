@@ -4,11 +4,11 @@ import de.hhbk.entities.Benutzer;
 import de.hhbk.entities.Rolle;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named(value = "benutzer")
-@SessionScoped
+@ViewScoped
 public class BenutzerBean extends BeanTemplate<Benutzer> {
     public BenutzerBean() {
         super(Benutzer.class, Rolle.NONE);
@@ -17,10 +17,11 @@ public class BenutzerBean extends BeanTemplate<Benutzer> {
     @PostConstruct
     public void init() {
         try {
+            this.checkPermission();
             this.loadItemList();
         } catch (Exception e) {
             e.printStackTrace();
-            this.setErrorMessage("Daten konnten nicht geladen werden", e.getMessage());
+            this.setErrorMessage("Fehler bei initialisierung", e.getMessage());
         }
     }
 }
