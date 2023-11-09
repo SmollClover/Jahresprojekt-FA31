@@ -5,6 +5,7 @@ import de.hhbk.entities.EntityTemplate;
 import de.hhbk.entities.Rolle;
 import de.hhbk.managers.AuthorizationManager;
 import de.hhbk.managers.DatabaseManager;
+import de.hhbk.managers.PermissionManager;
 import org.hibernate.Session;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.lang.JoseException;
@@ -15,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -26,21 +28,29 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
     @Inject
     ServletContext ctx;
     private Class<T> clazz = null;
-    private Rolle berechtigung = Rolle.NONE;
+    private String permName = null;
     private Collection<T> itemList = new ArrayList<T>();
     private T item = null;
 
     public BeanTemplate() {
     }
 
-    public BeanTemplate(Class<T> clazz, Rolle berechtigung) {
-        super();
+    public BeanTemplate(@NotNull Class<T> clazz) {
         this.clazz = clazz;
-        this.berechtigung = berechtigung;
+        this.permName = clazz.getSimpleName();
+    }
+
+    public BeanTemplate(@NotNull Class<T> clazz, @NotNull String permName) {
+        this(clazz);
+        this.permName = permName;
     }
 
     public void checkPermission() throws IOException, MalformedClaimException {
-        if (this.berechtigung == Rolle.NONE) return;
+        PermissionManager perm = (PermissionManager) ctx.getAttribute("Perm");
+        Rolle berechtigung = perm.get(permName);
+        System.out.println(permName);
+
+        if (berechtigung == Rolle.NONE) return;
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> cookies = context.getRequestCookieMap();
@@ -72,7 +82,7 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
             return;
         }
 
-        if (benutzer.getRolle().ordinal() < this.berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
+        if (benutzer.getRolle().ordinal() < berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
     }
 
     public void loadItemList() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -90,7 +100,7 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
         return this.item;
     }
 
-    public void setItem(T item) {
+    public void setItem(@NotNull T item) {
         this.item = item;
     }
 
@@ -110,8 +120,8 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
         this.resetItem();
     }
 
-    public void removeItem(T item) {
-        this.itemList.remove(this.item);
+    public void removeItem(@NotNull T item) {
+        this.itemList.remove(item);
     }
 
     protected void setMessage(String comonentId, FacesMessage.Severity type, String header, String msg) {

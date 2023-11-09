@@ -11,7 +11,7 @@ import javax.inject.Named;
 @ViewScoped
 public class BenutzerBean extends BeanTemplate<Benutzer> {
     public BenutzerBean() {
-        super(Benutzer.class, Rolle.NONE);
+        super(Benutzer.class);
     }
 
     @PostConstruct

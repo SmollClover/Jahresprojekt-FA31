@@ -11,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class OrtBean extends BeanTemplate<Ort> {
     public OrtBean() {
-        super(Ort.class, Rolle.NONE);
+        super(Ort.class);
     }
 
     @PostConstruct

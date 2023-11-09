@@ -11,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class MietobjektBean extends BeanTemplate<Mietobjekt> {
     public MietobjektBean() {
-        super(Mietobjekt.class, Rolle.NONE);
+        super(Mietobjekt.class);
     }
 
     @PostConstruct

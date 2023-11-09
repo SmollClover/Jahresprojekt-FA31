@@ -11,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class KontoinhaberBean extends BeanTemplate<Kontoinhaber> {
     public KontoinhaberBean() {
-        super(Kontoinhaber.class, Rolle.NONE);
+        super(Kontoinhaber.class);
     }
 
     @PostConstruct

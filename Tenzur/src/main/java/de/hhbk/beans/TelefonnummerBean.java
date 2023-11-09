@@ -11,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class TelefonnummerBean extends BeanTemplate<Telefonnummer> {
     public TelefonnummerBean() {
-        super(Telefonnummer.class, Rolle.NONE);
+        super(Telefonnummer.class);
     }
 
     @PostConstruct

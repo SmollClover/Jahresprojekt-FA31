@@ -11,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class EinnahmeBean extends BeanTemplate<Einnahme> {
     public EinnahmeBean() {
-        super(Einnahme.class, Rolle.NONE);
+        super(Einnahme.class);
     }
 
     @PostConstruct
