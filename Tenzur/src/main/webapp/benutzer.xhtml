@@ -39,7 +39,7 @@
                                 <b><h:outputText value="#{item.vorname} #{item.nachname}"/></b>
                             </p:column>
                             <p:column headerText="Anschrift">
-                                <h:outputText value="#{item.strasse} #{item.strassennummer}"/>
+                                <h:outputText value="#{item.strasse} #{item.hausnummer}"/>
                             </p:column>
                             <p:column style="width: 110px; text-align: center;">
                                 <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
@@ -101,7 +101,7 @@
                             <p:inputText id="ip_adr_str" value="#{benutzer.item.strasse}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_hnr" value="Hausnummer"/>
-                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.strassennummer}"
+                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.hausnummer}"
                                          style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_plz" value="Plz"/>
