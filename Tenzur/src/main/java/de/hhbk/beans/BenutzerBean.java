@@ -17,25 +17,36 @@ import java.util.Collection;
 public class BenutzerBean extends BeanTemplate {
     @Inject
     private ServletContext ctx;
-    private Collection<Benutzer> benutzer = new ArrayList<Benutzer>();
-
-    public Collection<Benutzer> getUsers() {
-        return benutzer;
-    }
+    private Collection<Benutzer> itemList = new ArrayList<Benutzer>();
+    private Benutzer item = null;
 
     public BenutzerBean() {
         super();
+    }
+
+    public Collection<Benutzer> getUsers() {
+        return itemList;
     }
 
     @PostConstruct
     public void init() {
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.benutzer = new Benutzer().getList(session);
+        this.itemList = new Benutzer().getList(session);
         session.close();
     }
 
     public String test() {
         return "Test String";
+    }
+
+    public String test(Benutzer p) { return "Test String"; }
+
+    public Collection<Benutzer> getItemList() {
+        return itemList;
+    }
+
+    public Benutzer getItem() {
+        return item;
     }
 }

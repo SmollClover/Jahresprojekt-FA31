@@ -24,22 +24,22 @@
         <div class="ui-g">
             <div class="ui-g-12">
                 <div class="card">
-                    <p>#{user.getUsers()}</p>
                     <h:form id="contentForm">
                         <p:menubar style="width:fit-content;">
                             <p:menuitem value="Hinzuf&uuml;gen" icon="fa fa-plus" oncomplete="PF('dlgEdit').show();"
-                                        action="#{benutzer.resetItem()}" update=":editModalDialogForm"/>
+                                        action="#{benutzer.test()}" update=":editModalDialogForm"/>
                         </p:menubar>
 
                         <br/>
                         <h1 style="margin-top: 20px;"><i class="layout-menuitem-icon pi pi-fw pi-users"></i>&nbsp;Benutzer
                         </h1>
-                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}" style="width: 100%; border-radius:4px;">
+                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}"
+                                     style="width: 100%; border-radius:4px;">
                             <p:column headerText="" style="width: 10px; border-radius:2px;">
-                                <p:outputPanel style="display:block" rendered="#{item.isWeiblich()}">
+                                <p:outputPanel style="display:block" rendered="#{false}">
                                     <i class="fa fa-female fa-fw"></i>
                                 </p:outputPanel>
-                                <p:outputPanel style="display:block" rendered="#{item.isMaennlich()}">
+                                <p:outputPanel style="display:block" rendered="#{true}">
                                     <i class="fa fa-male fa-fw"></i>
                                 </p:outputPanel>
                             </p:column>
@@ -47,15 +47,15 @@
                                 <b><h:outputText value="#{item.vorname} #{item.nachname}"/></b>
                             </p:column>
                             <p:column headerText="Anschrift">
-                                <h:outputText value="#{item.adresse}"/>
+                                <h:outputText value="#{item.strasse} #{item.strassennummer}"/>
                             </p:column>
                             <p:column style="width: 110px; text-align: center;">
-                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
+                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.test(item)}"
                                                update=":editModalDialogForm">
                                     <i class="fa fa-wrench fa-fw"></i>
                                 </p:commandLink>
                                 &nbsp;
-                                <p:commandLink action="#{benutzer.removeItem(item)}" update=":contentForm">
+                                <p:commandLink action="#{benutzer.test(item)}" update=":contentForm">
                                     <i class="fa fa-trash fa-fw"></i>
                                     <p:confirm header="Eintrag l&ouml;schen?"
                                                message="Sollen der Eintrag gel&ouml;scht werden?"
@@ -112,20 +112,20 @@
                             <p:inputText id="ip_nachname" value="#{benutzer.item.nachname}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_str" value="Stra&szlig;e"/>
-                            <p:inputText id="ip_adr_str" value="#{benutzer.item.adresse.strasse}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_str" value="#{benutzer.item.strasse}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_hnr" value="Hausnummer"/>
-                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.adresse.hausnummer}"
+                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.strassennummer}"
                                          style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_plz" value="Plz"/>
-                            <p:inputText id="ip_adr_plz" value="#{benutzer.item.adresse.plz}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_plz" value="#{benutzer.item.ort.plz}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_ort" value="Ort"/>
-                            <p:inputText id="ip_adr_ort" value="#{benutzer.item.adresse.ort}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_ort" value="#{benutzer.item.ort.ort}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_telefon" value="Telefon"/>
-                            <p:inputText id="ip_telefon" value="#{benutzer.item.telefon}" style="width: 100%;"/>
+                            <p:inputText id="ip_telefon" value="#{benutzer.item.telefonnummer}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_email" value="E-Mail"/>
                             <p:inputText id="ip_email" value="#{benutzer.item.email}" style="width: 100%;"/>
@@ -137,7 +137,7 @@
                     </p:scrollPanel>
                     <br/><br/>
 
-                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.saveItem()}"
+                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.test()}"
                                      oncomplete="PF('dlgEdit').hide();" update=":contentForm, messageBox"/>
                     &nbsp;
                     <p:commandButton value="Schlie&szlig;en" style="width: 120px;" onclick="PF('dlgEdit').hide();"
