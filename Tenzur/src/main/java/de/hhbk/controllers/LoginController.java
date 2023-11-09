@@ -57,9 +57,7 @@ public class LoginController extends HttpServlet {
                 response.setCharacterEncoding("UTF-8");
                 out.print("{\"status\": \"success\"}");
                 out.flush();
-            } else {
-                // response.sendError(400);
-                
+            } else {                
                 // Response Body
                 PrintWriter out = response.getWriter();
                 response.setContentType("application/json");
@@ -68,8 +66,6 @@ public class LoginController extends HttpServlet {
                 out.flush();
             }
         }else{
-            // response.sendError(400);
-                
             // Response Body
             PrintWriter out = response.getWriter();
             response.setContentType("application/json");
