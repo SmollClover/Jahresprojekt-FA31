@@ -1,5 +1,6 @@
 package de.hhbk.beans;
 
+import de.hhbk.entities.Rolle;
 import de.hhbk.entities.Telefonnummer;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class TelefonnummerBean extends BeanTemplate<Telefonnummer> {
     public TelefonnummerBean() {
-        super(Telefonnummer.class);
+        super(Telefonnummer.class, Rolle.NONE);
     }
 
     @PostConstruct

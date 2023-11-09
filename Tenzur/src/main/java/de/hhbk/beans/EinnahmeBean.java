@@ -1,6 +1,7 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.Einnahme;
+import de.hhbk.entities.Rolle;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -10,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class EinnahmeBean extends BeanTemplate<Einnahme> {
     public EinnahmeBean() {
-        super(Einnahme.class);
+        super(Einnahme.class, Rolle.NONE);
     }
 
     @PostConstruct

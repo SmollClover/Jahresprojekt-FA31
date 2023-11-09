@@ -1,6 +1,7 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.Ort;
+import de.hhbk.entities.Rolle;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -10,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class OrtBean extends BeanTemplate<Ort> {
     public OrtBean() {
-        super(Ort.class);
+        super(Ort.class, Rolle.NONE);
     }
 
     @PostConstruct

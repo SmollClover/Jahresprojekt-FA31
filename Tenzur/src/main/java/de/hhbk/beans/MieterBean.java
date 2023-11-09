@@ -1,6 +1,7 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.Mieter;
+import de.hhbk.entities.Rolle;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -10,7 +11,7 @@ import javax.inject.Named;
 @SessionScoped
 public class MieterBean extends BeanTemplate<Mieter> {
     public MieterBean() {
-        super(Mieter.class);
+        super(Mieter.class, Rolle.NONE);
     }
 
     @PostConstruct

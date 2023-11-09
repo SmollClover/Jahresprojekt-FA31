@@ -75,7 +75,7 @@ public class AuthorizationManager {
         return jwt;
     }
 
-    public boolean validateToken(String token) throws MalformedClaimException {
+    public String validateToken(String token) throws MalformedClaimException {
         // Use JwtConsumerBuilder to construct an appropriate JwtConsumer, which will
         // be used to validate and process the JWT.
         // The specific validation requirements for a JWT are context dependent,
@@ -99,7 +99,7 @@ public class AuthorizationManager {
             // Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
             System.out.println("JWT validation succeeded! " + jwtClaims);
-            return true;
+            return jwtClaims.getClaimValue("userID").toString();
         } catch (InvalidJwtException e) {
             // InvalidJwtException will be thrown, if the JWT failed processing or
             // validation in anyway.
@@ -119,7 +119,8 @@ public class AuthorizationManager {
             if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
                 System.out.println("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
             }
-            return false;
+
+            return null;
         }
     }
 
