@@ -35,7 +35,6 @@ public class BeanTemplate implements Serializable {
     public void checkPermission() throws IOException, MalformedClaimException {
         PermissionManager perm = (PermissionManager) ctx.getAttribute("Perm");
         Rolle berechtigung = perm.get(permName);
-        System.out.println(permName);
 
         if (berechtigung == Rolle.NONE) return;
 
