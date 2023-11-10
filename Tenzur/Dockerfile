@@ -4,9 +4,7 @@ WORKDIR /root
 COPY pom.xml .
 COPY src/ .
 
-RUN mvn compile
-RUN mvn war:war
-RUN mvn war:exploded
+RUN mvn package
 
 FROM tomcat:9 as Server
 
