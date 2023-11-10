@@ -1,7 +1,6 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.Kontoinhaber;
-import de.hhbk.entities.Rolle;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -9,8 +8,8 @@ import javax.inject.Named;
 
 @Named(value = "kontoinhaber")
 @SessionScoped
-public class KontoinhaberBean extends BeanTemplate<Kontoinhaber> {
-    public KontoinhaberBean() {
+public class KontoinhaberBeanEntity extends BeanEntityTemplate<Kontoinhaber> {
+    public KontoinhaberBeanEntity() {
         super(Kontoinhaber.class);
     }
 

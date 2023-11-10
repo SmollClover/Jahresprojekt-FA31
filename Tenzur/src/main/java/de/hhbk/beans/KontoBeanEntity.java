@@ -1,17 +1,16 @@
 package de.hhbk.beans;
 
-import de.hhbk.entities.Mieter;
-import de.hhbk.entities.Rolle;
+import de.hhbk.entities.Konto;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named(value = "mieter")
+@Named(value = "konto")
 @SessionScoped
-public class MieterBean extends BeanTemplate<Mieter> {
-    public MieterBean() {
-        super(Mieter.class);
+public class KontoBeanEntity extends BeanEntityTemplate<Konto> {
+    public KontoBeanEntity() {
+        super(Konto.class);
     }
 
     @PostConstruct

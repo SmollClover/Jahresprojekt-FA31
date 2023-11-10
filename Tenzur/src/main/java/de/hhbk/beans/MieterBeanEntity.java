@@ -1,17 +1,16 @@
 package de.hhbk.beans;
 
-import de.hhbk.entities.Ort;
-import de.hhbk.entities.Rolle;
+import de.hhbk.entities.Mieter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named(value = "ort")
+@Named(value = "mieter")
 @SessionScoped
-public class OrtBean extends BeanTemplate<Ort> {
-    public OrtBean() {
-        super(Ort.class);
+public class MieterBeanEntity extends BeanEntityTemplate<Mieter> {
+    public MieterBeanEntity() {
+        super(Mieter.class);
     }
 
     @PostConstruct

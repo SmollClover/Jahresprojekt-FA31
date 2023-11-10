@@ -1,14 +1,12 @@
 package de.hhbk.beans;
 
 import de.hhbk.entities.Benutzer;
-import de.hhbk.entities.EntityTemplate;
 import de.hhbk.entities.Rolle;
 import de.hhbk.managers.AuthorizationManager;
 import de.hhbk.managers.DatabaseManager;
 import de.hhbk.managers.PermissionManager;
 import org.hibernate.Session;
 import org.jose4j.jwt.MalformedClaimException;
-import org.jose4j.lang.JoseException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -19,29 +17,18 @@ import javax.servlet.http.Cookie;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 
-public class BeanTemplate<T extends EntityTemplate> implements Serializable {
+public class BeanTemplate implements Serializable {
     @Inject
     ServletContext ctx;
-    private Class<T> clazz = null;
-    private String permName = null;
-    private Collection<T> itemList = new ArrayList<T>();
-    private T item = null;
+    String permName = null;
 
     public BeanTemplate() {
     }
 
-    public BeanTemplate(@NotNull Class<T> clazz) {
-        this.clazz = clazz;
-        this.permName = clazz.getSimpleName();
-    }
-
-    public BeanTemplate(@NotNull Class<T> clazz, @NotNull String permName) {
-        this(clazz);
+    public BeanTemplate(@NotNull String permName) {
+        this();
         this.permName = permName;
     }
 
@@ -83,45 +70,6 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
         }
 
         if (benutzer.getRolle().ordinal() < berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
-    }
-
-    public void loadItemList() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        DatabaseManager DB = (DatabaseManager) this.ctx.getAttribute("DB");
-        Session session = DB.getSessionFactory().openSession();
-        this.itemList = clazz.getDeclaredConstructor().newInstance().getList(session);
-        session.close();
-    }
-
-    public Collection<T> getItemList() {
-        return this.itemList;
-    }
-
-    public T getItem() {
-        return this.item;
-    }
-
-    public void setItem(@NotNull T item) {
-        this.item = item;
-    }
-
-    public void resetItem() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        this.item = clazz.getDeclaredConstructor().newInstance();
-    }
-
-    public void addItem() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        if (this.itemList.contains(this.item)) return;
-
-        DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
-        Session session = DB.getSessionFactory().openSession();
-        this.item.save(session);
-        session.close();
-
-        this.itemList.add(this.item);
-        this.resetItem();
-    }
-
-    public void removeItem(@NotNull T item) {
-        this.itemList.remove(item);
     }
 
     protected void setMessage(String comonentId, FacesMessage.Severity type, String header, String msg) {

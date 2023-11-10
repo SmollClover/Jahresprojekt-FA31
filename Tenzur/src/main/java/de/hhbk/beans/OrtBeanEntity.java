@@ -1,17 +1,16 @@
 package de.hhbk.beans;
 
-import de.hhbk.entities.Rolle;
-import de.hhbk.entities.Telefonnummer;
+import de.hhbk.entities.Ort;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named(value = "telefon")
+@Named(value = "ort")
 @SessionScoped
-public class TelefonnummerBean extends BeanTemplate<Telefonnummer> {
-    public TelefonnummerBean() {
-        super(Telefonnummer.class);
+public class OrtBeanEntity extends BeanEntityTemplate<Ort> {
+    public OrtBeanEntity() {
+        super(Ort.class);
     }
 
     @PostConstruct

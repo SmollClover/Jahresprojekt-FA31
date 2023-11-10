@@ -1,17 +1,16 @@
 package de.hhbk.beans;
 
-import de.hhbk.entities.Konto;
-import de.hhbk.entities.Rolle;
+import de.hhbk.entities.Telefonnummer;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named(value = "konto")
+@Named(value = "telefon")
 @SessionScoped
-public class KontoBean extends BeanTemplate<Konto> {
-    public KontoBean() {
-        super(Konto.class);
+public class TelefonnummerBeanEntity extends BeanEntityTemplate<Telefonnummer> {
+    public TelefonnummerBeanEntity() {
+        super(Telefonnummer.class);
     }
 
     @PostConstruct

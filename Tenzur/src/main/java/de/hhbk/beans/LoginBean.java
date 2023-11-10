@@ -1,26 +1,22 @@
 package de.hhbk.beans;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.servlet.http.Cookie;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 @Named(value = "login")
 @ViewScoped
-public class LoginBean implements Serializable {
+public class LoginBean extends BeanTemplate {
     public LoginBean() {
+        super();
     }
 
     public void setLogin() {
@@ -52,7 +48,7 @@ public class LoginBean implements Serializable {
                 }
 
                 context.addResponseCookie("authorization", response.toString(), null);
-                System.out.println(response.toString());
+                System.out.println(response);
             }
 
             conn.disconnect();
