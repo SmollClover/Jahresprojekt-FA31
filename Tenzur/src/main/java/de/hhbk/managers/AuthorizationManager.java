@@ -56,7 +56,6 @@ public class AuthorizationManager {
         jwe.setPayload(innerJwt);
 
         String jwt = jwe.getCompactSerialization();
-        System.out.println(jwt);
         return jwt;
     }
 
@@ -98,18 +97,7 @@ public class AuthorizationManager {
         try {
             JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
             return jwtClaims.getClaimValue("userID").toString();
-        } catch (InvalidJwtException e) {
-            e.printStackTrace();
-            /* System.out.println("Invalid JWT! " + e);
-
-            if (e.hasExpired()) {
-                System.out.println("JWT expired at " + e.getJwtContext().getJwtClaims().getExpirationTime());
-            }
-
-            if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
-                System.out.println("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
-            } */
-
+        } catch (InvalidJwtException ignored) {
             return null;
         }
     }

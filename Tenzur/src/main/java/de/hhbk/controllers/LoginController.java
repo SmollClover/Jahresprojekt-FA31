@@ -39,7 +39,6 @@ public class LoginController extends HttpServlet {
 
         Session session = DB.getSessionFactory().openSession();
         Benutzer user = new Benutzer().searchBenutzername(session, username);
-        System.out.println(user);
 
         if (user != null) {
             BCrypt.Result login_result = manager.verifyPassword(password, user.getPasswort());
@@ -54,7 +53,6 @@ public class LoginController extends HttpServlet {
                 out.print(jwt);
                 out.flush();
             } else {
-                System.out.println("Passwort falsch");
                 // Response Body
                 PrintWriter out = response.getWriter();
                 response.setContentType("application/json");
