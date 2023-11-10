@@ -27,6 +27,9 @@ import javax.validation.constraints.NotNull;
 import java.io.PrintWriter;
 
 public class AuthorizationManager {
+    /**
+     * Encryption Keys
+     */
     private EllipticCurveJsonWebKey senderJwk = null;
     private EllipticCurveJsonWebKey receiverJwk = null;
 
@@ -34,6 +37,10 @@ public class AuthorizationManager {
         this.generateKeyPair();
     }
 
+    /**
+     * Creates an Encrpytion Key Pair for encrypting and decrypting a JWT
+     * @throws JoseException
+     */
     private void generateKeyPair() throws JoseException {
         this.senderJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
         this.receiverJwk = EcJwkGenerator.generateJwk(EllipticCurves.P521);
@@ -42,6 +49,12 @@ public class AuthorizationManager {
         this.receiverJwk.setKeyId("tenzur");
     }
 
+    /**
+     * 
+     * @param userID the user ID to save into the JWT
+     * @return The encrypted JWT String
+     * @throws JoseException
+     */
     @NotNull
     public String generateJWT(@NotNull long userID) throws JoseException {
         JsonWebSignature jws = getJsonWebSignature(userID);
@@ -59,6 +72,11 @@ public class AuthorizationManager {
         return jwt;
     }
 
+    /**
+     * 
+     * @param userID the user ID to save into the JWT
+     * @return The unencrypted Json Web Signature
+     */
     @NotNull
     private JsonWebSignature getJsonWebSignature(@NotNull long userID) {
         JwtClaims claims = new JwtClaims();
@@ -79,6 +97,11 @@ public class AuthorizationManager {
         return jws;
     }
 
+    /**
+     * 
+     * @param token The encrypted JWT String
+     * @return Either the decrypted token payload, here the user ID or null on failure
+     */
     public String validateToken(@NotNull String token) {
         JwtConsumer jwtConsumer = new JwtConsumerBuilder().setRequireExpirationTime()
                 .setAllowedClockSkewInSeconds(30)
@@ -102,11 +125,22 @@ public class AuthorizationManager {
         }
     }
 
+    /**
+     * 
+     * @param password The unhashed password string
+     * @return The hashed password string
+     */
     @NotNull
     public String hashPassword(@NotNull String password) {
         return BCrypt.withDefaults().hashToString(15, password.toCharArray());
     }
 
+    /**
+     * 
+     * @param password The unhashed password from the user input
+     * @param hashedPassword The hashed password saved in the database for comparison
+     * @return
+     */
     @NotNull
     public BCrypt.Result verifyPassword(@NotNull String password, @NotNull String hashedPassword) {
         return BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
