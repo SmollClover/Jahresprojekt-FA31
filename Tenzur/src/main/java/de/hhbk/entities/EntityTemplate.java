@@ -1,24 +1,43 @@
 package de.hhbk.entities;
 
+import org.hibernate.Session;
+
 import java.io.Serializable;
+import java.util.Collection;
 
-public abstract class EntityTemplate implements Serializable {
-    protected long id = -1;
+public class EntityTemplate<T> implements Serializable {
+    private final Class<T> clazz;
 
-    public EntityTemplate() {
-        super();
-        this.id++;
+    public EntityTemplate(Class<T> clazz) {
+        this.clazz = clazz;
     }
 
-    public long getId() {
-        return id;
+    public T getById(Session session, long id) {
+        session.beginTransaction();
+        T result = session.get(clazz, id);
+        session.getTransaction().commit();
+
+        return result;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Collection<T> getList(Session session) {
+        session.beginTransaction();
+        Collection<T> result = session.createQuery("FROM " + clazz.getName(), clazz).list();
+        session.getTransaction().commit();
+
+        return result;
     }
 
-    public boolean hasId() {
-        return this.id > -1;
+    public T save(Session session) {
+        session.beginTransaction();
+        session.save(this);
+        session.getTransaction().commit();
+        return (T) this;
+    }
+
+    public void delete(Session session) {
+        session.beginTransaction();
+        session.delete(this);
+        session.getTransaction().commit();
     }
 }

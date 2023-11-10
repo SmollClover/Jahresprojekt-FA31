@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -25,8 +25,7 @@
             <div class="ui-g-12">
                 <div class="card">
                     <h:form id="contentForm">
-
-                        <p:menubar>
+                        <p:menubar style="width:fit-content;">
                             <p:menuitem value="Hinzuf&uuml;gen" icon="fa fa-plus" oncomplete="PF('dlgEdit').show();"
                                         action="#{benutzer.resetItem()}" update=":editModalDialogForm"/>
                         </p:menubar>
@@ -34,23 +33,28 @@
                         <br/>
                         <h1 style="margin-top: 20px;"><i class="layout-menuitem-icon pi pi-fw pi-users"></i>&nbsp;Benutzer
                         </h1>
-
-                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}" style="width: 100%;">
-                            <p:column headerText="" style="width: 10px;">
-                                <p:outputPanel style="display:block" rendered="#{item.isWeiblich()}">
-                                    <i class="fa fa-female fa-fw"></i>
-                                </p:outputPanel>
-                                <p:outputPanel style="display:block" rendered="#{item.isMaennlich()}">
-                                    <i class="fa fa-male fa-fw"></i>
-                                </p:outputPanel>
-                            </p:column>
-                            <p:column headerText="Name" style="width: 350px;">
+                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}"
+                                     style="width: 100%; border-radius:4px;">
+                            <p:column headerText="Name" style="width: fit-content;">
                                 <b><h:outputText value="#{item.vorname} #{item.nachname}"/></b>
                             </p:column>
+                            <p:column headerText="Benutzername">
+                                <h:outputText value="#{item.benutzername}"/>
+                            </p:column>
+                            <p:column headerText="Email" style="width: fit-content;">
+                                <h:outputText value="#{item.email}"/>
+                            </p:column>
                             <p:column headerText="Anschrift">
-                                <h:outputText value="#{item.adresse}"/>
+                                <h:outputText value="#{item.strasse} #{item.hausnummer}"/>
+                            </p:column>
+                            <p:column headerText="" style="width: fit-content">
+
                             </p:column>
                             <p:column style="width: 110px; text-align: center;">
+                                <p:commandButton action="#{benutzer.setItem(item)}" update=":itemDetail" oncomplete="PF('productDialog').show()"
+                                                 icon="fa-solid fa-magnifying-glass" title="View">
+                                </p:commandButton>
+                                &nbsp;
                                 <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
                                                update=":editModalDialogForm">
                                     <i class="fa fa-wrench fa-fw"></i>
@@ -100,12 +104,6 @@
                             <p:outputLabel for="ip_id" value="ID"/>
                             <p:inputText id="ip_id" value="#{benutzer.item.id}" style="width: 100%;" disabled="true"/>
 
-                            <p:outputLabel for="ip_anrede" value="Anrede"/>
-                            <p:selectOneMenu id="ip_anrede" value="#{benutzer.item.anrede}" style="width: 100%;">
-                                <f:selectItems value="#{benutzer.anredeOptionen}" var="rvar"
-                                               itemLabel="#{rvar.anrede}"/>
-                            </p:selectOneMenu>
-
                             <p:outputLabel for="ip_vorname" value="Vorname"/>
                             <p:inputText id="ip_vorname" value="#{benutzer.item.vorname}" style="width: 100%;"/>
 
@@ -113,20 +111,20 @@
                             <p:inputText id="ip_nachname" value="#{benutzer.item.nachname}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_str" value="Stra&szlig;e"/>
-                            <p:inputText id="ip_adr_str" value="#{benutzer.item.adresse.strasse}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_str" value="#{benutzer.item.strasse}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_hnr" value="Hausnummer"/>
-                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.adresse.hausnummer}"
+                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.hausnummer}"
                                          style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_plz" value="Plz"/>
-                            <p:inputText id="ip_adr_plz" value="#{benutzer.item.adresse.plz}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_plz" value="#{benutzer.item.ort.plz}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_ort" value="Ort"/>
-                            <p:inputText id="ip_adr_ort" value="#{benutzer.item.adresse.ort}" style="width: 100%;"/>
+                            <p:inputText id="ip_adr_ort" value="#{benutzer.item.ort.ort}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_telefon" value="Telefon"/>
-                            <p:inputText id="ip_telefon" value="#{benutzer.item.telefon}" style="width: 100%;"/>
+                            <p:inputText id="ip_telefon" value="#{benutzer.item.telefonnummer}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_email" value="E-Mail"/>
                             <p:inputText id="ip_email" value="#{benutzer.item.email}" style="width: 100%;"/>
@@ -138,13 +136,59 @@
                     </p:scrollPanel>
                     <br/><br/>
 
-                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.saveItem()}"
+                    <p:commandButton value="Speichern" style="width: 120px;" action="#{benutzer.addItem()}"
                                      oncomplete="PF('dlgEdit').hide();" update=":contentForm, messageBox"/>
                     &nbsp;
                     <p:commandButton value="Schlie&szlig;en" style="width: 120px;" onclick="PF('dlgEdit').hide();"
                                      immediate="true"/>
                 </h:form>
             </div>
+        </p:dialog>
+
+        <p:dialog header="Benutzer Info" widgetVar="productDialog" modal="true" showEffect="fade"
+                  hideEffect="fade" resizable="false">
+            <p:outputPanel id="itemDetail" style="text-align:start; width:400px;">
+                <p:column rendered="#{not empty benutzer.item}">
+                    <div class="product">
+                        <div class="product-grid-item card" style="margin-bottom: 0">
+                            <div class="product-grid-item-top">
+                                <div>
+                                    <p:column>Name: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.vorname} #{benutzer.item.nachname}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                    <p:column>Strasse: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.strasse}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                    <p:column>Hausnummer: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.strassennummer}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Postleitzahl: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.ort.plz}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Ort: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.ort.ort}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Email: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.email}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:column>
+            </p:outputPanel>
         </p:dialog>
 
 
