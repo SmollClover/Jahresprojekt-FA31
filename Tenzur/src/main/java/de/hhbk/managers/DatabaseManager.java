@@ -17,7 +17,6 @@ public class DatabaseManager {
     private SessionFactory sessionFactory;
 
 
-
     public DatabaseManager(String ip, String port, String username, String password, String stage) {
         this.ip = ip;
         this.port = port;
@@ -139,10 +138,10 @@ public class DatabaseManager {
         MietobjektMieter MietobjektMieterBurak = new MietobjektMieter(new MietobjektMieterId(MietobjektBurak, MieterBurak), new Date()).save(session);
 
         // Passwort = passwort
-        Benutzer BenutzerTobias = new Benutzer("Tobias", "Ochott", "Unter der Brück", "5a", OrtRostock, List.of(new Telefonnummer[]{TelefonnummerTobias}), "tobegeiler@gmail.com", "tobias", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MIETER).save(session);
-        Benutzer BenutzerLars = new Benutzer("Lars", "Belitz", "Königsalle", "420", OrtFunktown, List.of(new Telefonnummer[]{TelefonnummerLars}), "lars.ist.cool@hotmail.com", "lars", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.ADMIN).save(session);
-        Benutzer BenutzerLaura = new Benutzer("Laura", "Boniecki", "Jede Straße", "0", OrtBerlin, List.of(new Telefonnummer[]{TelefonnummerLaura}), "laura@web.de", "laura", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.VERMIETER).save(session);
-        Benutzer BenutzerRobin = new Benutzer("Robin", "Walter", "???", "666", OrtBadbeuren, List.of(new Telefonnummer[]{TelefonnummerRobin}), "ro@bot.email", "robin", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MITARBEITER).save(session);
-        Benutzer BenutzerBurak = new Benutzer("Burak", "Kablan", "Am Brunnen", "12", OrtEssen, List.of(new Telefonnummer[]{TelefonnummerBurak}), "burak@kablan.cool", "burak", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.NONE).save(session);
+        Benutzer BenutzerTobias = new Benutzer("tobegeiler@gmail.com", "tobias", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MIETER).save(session);
+        Benutzer BenutzerLars = new Benutzer("lars.ist.cool@hotmail.com", "lars", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.ADMIN).save(session);
+        Benutzer BenutzerLaura = new Benutzer("laura@web.de", "laura", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.VERMIETER).save(session);
+        Benutzer BenutzerRobin = new Benutzer("ro@bot.email", "robin", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MITARBEITER).save(session);
+        Benutzer BenutzerBurak = new Benutzer("burak@kablan.cool", "burak", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.NONE).save(session);
     }
 }

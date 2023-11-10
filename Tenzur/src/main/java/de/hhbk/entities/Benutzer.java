@@ -3,8 +3,6 @@ package de.hhbk.entities;
 import org.hibernate.Session;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 public class Benutzer extends EntityTemplate<Benutzer> {
@@ -13,14 +11,6 @@ public class Benutzer extends EntityTemplate<Benutzer> {
     private long id;
     @Enumerated(EnumType.STRING)
     private Rolle rolle;
-    private String vorname;
-    private String nachname;
-    private String strasse;
-    private String hausnummer;
-    @ManyToOne
-    private Ort ort;
-    @OneToMany
-    private Collection<Telefonnummer> telefonnummer = new ArrayList<Telefonnummer>();
     private String email;
     private String benutzername;
     private String passwort;
@@ -30,21 +20,15 @@ public class Benutzer extends EntityTemplate<Benutzer> {
         this.rolle = Rolle.NONE;
     }
 
-    public Benutzer(String vorname, String nachname, String strasse, String hausnummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
+    public Benutzer(String email, String benutzername, String passwort) {
         this();
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.strasse = strasse;
-        this.hausnummer = hausnummer;
-        this.ort = ort;
-        this.telefonnummer = telefonnummer;
         this.email = email;
         this.benutzername = benutzername;
         this.passwort = passwort;
     }
 
-    public Benutzer(String vorname, String nachname, String strasse, String hausnummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
-        this(vorname, nachname, strasse, hausnummer, ort, telefonnummer, email, benutzername, passwort);
+    public Benutzer(String email, String benutzername, String passwort, Rolle rolle) {
+        this(email, benutzername, passwort);
         this.rolle = rolle;
     }
 
@@ -70,54 +54,6 @@ public class Benutzer extends EntityTemplate<Benutzer> {
 
     public void setRolle(Rolle rolle) {
         this.rolle = rolle;
-    }
-
-    public String getVorname() {
-        return vorname;
-    }
-
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
-    }
-
-    public String getNachname() {
-        return nachname;
-    }
-
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
-    }
-
-    public String getStrasse() {
-        return strasse;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public String getHausnummer() {
-        return hausnummer;
-    }
-
-    public void setHausnummer(String hausnummer) {
-        this.hausnummer = hausnummer;
-    }
-
-    public Ort getOrt() {
-        return ort;
-    }
-
-    public void setOrt(Ort ort) {
-        this.ort = ort;
-    }
-
-    public Collection<Telefonnummer> getTelefonnummer() {
-        return telefonnummer;
-    }
-
-    public void setTelefonnummer(Collection<Telefonnummer> telefonnummer) {
-        this.telefonnummer = telefonnummer;
     }
 
     public String getEmail() {
