@@ -43,7 +43,7 @@ public class BeanTemplate implements Serializable {
 
         Cookie authCookie = (Cookie) cookies.get("authorization");
         if (authCookie == null) {
-            context.redirect(context.getRequestContextPath());
+            context.redirect(context.getRequestContextPath() + "/login.xhtml");
             return;
         }
 
@@ -52,7 +52,7 @@ public class BeanTemplate implements Serializable {
         if (userID == null) {
             authCookie.setMaxAge(1);
             context.addResponseCookie(authCookie.getName(), null, null);
-            context.redirect(context.getRequestContextPath());
+            context.redirect(context.getRequestContextPath() + "/login.xhtml");
             return;
         }
 
@@ -64,11 +64,11 @@ public class BeanTemplate implements Serializable {
         if (benutzer == null) {
             authCookie.setMaxAge(1);
             context.addResponseCookie(authCookie.getName(), null, null);
-            context.redirect(context.getRequestContextPath());
+            context.redirect(context.getRequestContextPath() + "/login.xhtml");
             return;
         }
 
-        if (benutzer.getRolle().ordinal() < berechtigung.ordinal()) context.redirect(context.getRequestContextPath());
+        if (benutzer.getRolle().ordinal() < berechtigung.ordinal()) context.redirect(context.getRequestContextPath() + "/login.xhtml");
     }
 
     protected void setMessage(String comonentId, FacesMessage.Severity type, String header, String msg) {
