@@ -76,6 +76,9 @@
     <listener>
         <listener-class>de.hhbk.listeners.AuthorizationListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>de.hhbk.listeners.PermissionListener</listener-class>
+    </listener>
 
 
     <!-- Mapping -->

@@ -44,8 +44,8 @@
                             <p:column headerText="Email" style="width: fit-content;">
                                 <h:outputText value="#{item.email}"/>
                             </p:column>
-                            <p:column headerText="Anschrift" style="width: fit-content;">
-                                <h:outputText value="#{item.strasse} #{item.strassennummer}"/>
+                            <p:column headerText="Anschrift">
+                                <h:outputText value="#{item.strasse} #{item.hausnummer}"/>
                             </p:column>
                             <p:column headerText="" style="width: fit-content">
 
@@ -114,7 +114,7 @@
                             <p:inputText id="ip_adr_str" value="#{benutzer.item.strasse}" style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_hnr" value="Hausnummer"/>
-                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.strassennummer}"
+                            <p:inputText id="ip_adr_hnr" value="#{benutzer.item.hausnummer}"
                                          style="width: 100%;"/>
 
                             <p:outputLabel for="ip_adr_plz" value="Plz"/>

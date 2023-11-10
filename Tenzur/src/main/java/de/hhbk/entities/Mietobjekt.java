@@ -15,7 +15,7 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
     private int nebenkosten;
     private String notzifeld;
     private String strasse;
-    private String strassenummer;
+    private String hausnummer;
     @ManyToOne
     private Ort ort;
 
@@ -23,7 +23,7 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
         super(Mietobjekt.class);
     }
 
-    public Mietobjekt(String objektart, int objektnummer, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, String strassenummer, Ort ort) {
+    public Mietobjekt(String objektart, int objektnummer, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, String hausnummer, Ort ort) {
         this();
         this.objektart = objektart;
         this.objektnummer = objektnummer;
@@ -33,7 +33,7 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
         this.nebenkosten = nebenkosten;
         this.notzifeld = notzifeld;
         this.strasse = strasse;
-        this.strassenummer = strassenummer;
+        this.hausnummer = hausnummer;
         this.ort = ort;
     }
 
@@ -109,12 +109,12 @@ public class Mietobjekt extends EntityTemplate<Mietobjekt> {
         this.strasse = strasse;
     }
 
-    public String getStrassenummer() {
-        return strassenummer;
+    public String getHausnummer() {
+        return hausnummer;
     }
 
-    public void setStrassenummer(String strassenummer) {
-        this.strassenummer = strassenummer;
+    public void setHausnummer(String hausnummer) {
+        this.hausnummer = hausnummer;
     }
 
     public Ort getOrt() {

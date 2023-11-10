@@ -8,8 +8,8 @@ import javax.inject.Named;
 
 @Named(value = "einnahme")
 @SessionScoped
-public class EinnahmeBean extends BeanTemplate<Einnahme> {
-    public EinnahmeBean() {
+public class EinnahmeBeanEntity extends BeanEntityTemplate<Einnahme> {
+    public EinnahmeBeanEntity() {
         super(Einnahme.class);
     }
 

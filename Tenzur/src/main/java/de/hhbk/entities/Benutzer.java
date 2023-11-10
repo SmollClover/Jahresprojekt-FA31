@@ -16,7 +16,7 @@ public class Benutzer extends EntityTemplate<Benutzer> {
     private String vorname;
     private String nachname;
     private String strasse;
-    private String strassennummer;
+    private String hausnummer;
     @ManyToOne
     private Ort ort;
     @OneToMany
@@ -30,12 +30,12 @@ public class Benutzer extends EntityTemplate<Benutzer> {
         this.rolle = Rolle.NONE;
     }
 
-    public Benutzer(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
+    public Benutzer(String vorname, String nachname, String strasse, String hausnummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort) {
         this();
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
-        this.strassennummer = strassennummer;
+        this.hausnummer = hausnummer;
         this.ort = ort;
         this.telefonnummer = telefonnummer;
         this.email = email;
@@ -43,8 +43,8 @@ public class Benutzer extends EntityTemplate<Benutzer> {
         this.passwort = passwort;
     }
 
-    public Benutzer(String vorname, String nachname, String strasse, String strassennummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
-        this(vorname, nachname, strasse, strassennummer, ort, telefonnummer, email, benutzername, passwort);
+    public Benutzer(String vorname, String nachname, String strasse, String hausnummer, Ort ort, Collection<Telefonnummer> telefonnummer, String email, String benutzername, String passwort, Rolle rolle) {
+        this(vorname, nachname, strasse, hausnummer, ort, telefonnummer, email, benutzername, passwort);
         this.rolle = rolle;
     }
 
@@ -96,12 +96,12 @@ public class Benutzer extends EntityTemplate<Benutzer> {
         this.strasse = strasse;
     }
 
-    public String getStrassennummer() {
-        return strassennummer;
+    public String getHausnummer() {
+        return hausnummer;
     }
 
-    public void setStrassennummer(String strassennummer) {
-        this.strassennummer = strassennummer;
+    public void setHausnummer(String hausnummer) {
+        this.hausnummer = hausnummer;
     }
 
     public Ort getOrt() {

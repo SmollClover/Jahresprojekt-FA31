@@ -8,8 +8,8 @@ import javax.inject.Named;
 
 @Named(value = "ort")
 @SessionScoped
-public class OrtBean extends BeanTemplate<Ort> {
-    public OrtBean() {
+public class OrtBeanEntity extends BeanEntityTemplate<Ort> {
+    public OrtBeanEntity() {
         super(Ort.class);
     }
 
