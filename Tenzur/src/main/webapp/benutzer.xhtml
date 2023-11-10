@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -35,13 +35,26 @@
                         </h1>
                         <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}"
                                      style="width: 100%; border-radius:4px;">
-                            <p:column headerText="Name" style="width: 350px;">
+                            <p:column headerText="Name" style="width: fit-content;">
                                 <b><h:outputText value="#{item.vorname} #{item.nachname}"/></b>
                             </p:column>
-                            <p:column headerText="Anschrift">
+                            <p:column headerText="Benutzername">
+                                <h:outputText value="#{item.benutzername}"/>
+                            </p:column>
+                            <p:column headerText="Email" style="width: fit-content;">
+                                <h:outputText value="#{item.email}"/>
+                            </p:column>
+                            <p:column headerText="Anschrift" style="width: fit-content;">
                                 <h:outputText value="#{item.strasse} #{item.strassennummer}"/>
                             </p:column>
+                            <p:column headerText="" style="width: fit-content">
+
+                            </p:column>
                             <p:column style="width: 110px; text-align: center;">
+                                <p:commandButton action="#{benutzer.setItem(item)}" update=":itemDetail" oncomplete="PF('productDialog').show()"
+                                                 icon="fa-solid fa-magnifying-glass" title="View">
+                                </p:commandButton>
+                                &nbsp;
                                 <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
                                                update=":editModalDialogForm">
                                     <i class="fa fa-wrench fa-fw"></i>
@@ -130,6 +143,52 @@
                                      immediate="true"/>
                 </h:form>
             </div>
+        </p:dialog>
+
+        <p:dialog header="Benutzer Info" widgetVar="productDialog" modal="true" showEffect="fade"
+                  hideEffect="fade" resizable="false">
+            <p:outputPanel id="itemDetail" style="text-align:start; width:400px;">
+                <p:column rendered="#{not empty benutzer.item}">
+                    <div class="product">
+                        <div class="product-grid-item card" style="margin-bottom: 0">
+                            <div class="product-grid-item-top">
+                                <div>
+                                    <p:column>Name: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.vorname} #{benutzer.item.nachname}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                    <p:column>Strasse: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.strasse}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                    <p:column>Hausnummer: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.strassennummer}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Postleitzahl: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.ort.plz}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Ort: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.ort.ort}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                      <p:column>Email: </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{benutzer.item.email}" style="width: 100%;"/>
+                                    </p:column>
+                                    <p:separator/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:column>
+            </p:outputPanel>
         </p:dialog>
 
 

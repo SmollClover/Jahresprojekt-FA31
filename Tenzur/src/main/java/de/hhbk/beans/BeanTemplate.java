@@ -43,7 +43,7 @@ public class BeanTemplate<T extends EntityTemplate> implements Serializable {
     }
 
     public void setItem(T item) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        this.item = clazz.getDeclaredConstructor().newInstance();
+        this.item = item;
     }
 
     public void resetItem() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
