@@ -23,6 +23,7 @@ import org.jose4j.lang.JoseException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
 import java.io.PrintWriter;
 
 public class AuthorizationManager {
@@ -41,22 +42,9 @@ public class AuthorizationManager {
         this.receiverJwk.setKeyId("tenzur");
     }
 
-    public String generateJWT(long userID) throws JoseException {
-        JwtClaims claims = new JwtClaims();
-        claims.setIssuer("Tenzur");
-        claims.setAudience("User");
-        claims.setExpirationTimeMinutesInTheFuture(10);
-        claims.setGeneratedJwtId();
-        claims.setIssuedAtToNow();
-        claims.setNotBeforeMinutesInThePast(2);
-        claims.setSubject("Authorization");
-        claims.setClaim("userID", userID);
-
-        JsonWebSignature jws = new JsonWebSignature();
-        jws.setPayload(claims.toJson());
-        jws.setKey(senderJwk.getPrivateKey());
-        jws.setKeyIdHeaderValue(senderJwk.getKeyId());
-        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P521_CURVE_AND_SHA512);
+    @NotNull
+    public String generateJWT(@NotNull long userID) throws JoseException {
+        JsonWebSignature jws = getJsonWebSignature(userID);
         String innerJwt = jws.getCompactSerialization();
 
         JsonWebEncryption jwe = new JsonWebEncryption();
@@ -72,7 +60,27 @@ public class AuthorizationManager {
         return jwt;
     }
 
-    public String validateToken(String token) throws MalformedClaimException {
+    @NotNull
+    private JsonWebSignature getJsonWebSignature(@NotNull long userID) {
+        JwtClaims claims = new JwtClaims();
+        claims.setIssuer("Tenzur");
+        claims.setAudience("User");
+        claims.setExpirationTimeMinutesInTheFuture(10);
+        claims.setGeneratedJwtId();
+        claims.setIssuedAtToNow();
+        claims.setNotBeforeMinutesInThePast(2);
+        claims.setSubject("Authorization");
+        claims.setClaim("userID", userID);
+
+        JsonWebSignature jws = new JsonWebSignature();
+        jws.setPayload(claims.toJson());
+        jws.setKey(senderJwk.getPrivateKey());
+        jws.setKeyIdHeaderValue(senderJwk.getKeyId());
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P521_CURVE_AND_SHA512);
+        return jws;
+    }
+
+    public String validateToken(@NotNull String token) {
         JwtConsumer jwtConsumer = new JwtConsumerBuilder().setRequireExpirationTime()
                 .setAllowedClockSkewInSeconds(30)
                 .setRequireExpirationTime()
@@ -89,10 +97,10 @@ public class AuthorizationManager {
 
         try {
             JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
-            System.out.println("JWT validation succeeded! " + jwtClaims);
             return jwtClaims.getClaimValue("userID").toString();
         } catch (InvalidJwtException e) {
-            System.out.println("Invalid JWT! " + e);
+            e.printStackTrace();
+            /* System.out.println("Invalid JWT! " + e);
 
             if (e.hasExpired()) {
                 System.out.println("JWT expired at " + e.getJwtContext().getJwtClaims().getExpirationTime());
@@ -100,17 +108,19 @@ public class AuthorizationManager {
 
             if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
                 System.out.println("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
-            }
+            } */
 
             return null;
         }
     }
 
-    public String hashPassword(String password) {
+    @NotNull
+    public String hashPassword(@NotNull String password) {
         return BCrypt.withDefaults().hashToString(15, password.toCharArray());
     }
 
-    public BCrypt.Result verifyPassword(String password, String hashedPassword) {
+    @NotNull
+    public BCrypt.Result verifyPassword(@NotNull String password, @NotNull String hashedPassword) {
         return BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
     }
 }

@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 @Named(value = "login")
 @ViewScoped
 public class LoginBean extends BeanTemplate {
+
     public LoginBean() {
         super();
     }
@@ -29,7 +30,7 @@ public class LoginBean extends BeanTemplate {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            String formData = "username=" + URLEncoder.encode("tobias", StandardCharsets.UTF_8) +
+            String formData = "username=" + URLEncoder.encode("lars", StandardCharsets.UTF_8) +
                     "&password=" + URLEncoder.encode("passwort", StandardCharsets.UTF_8);
 
             try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
@@ -48,7 +49,6 @@ public class LoginBean extends BeanTemplate {
                 }
 
                 context.addResponseCookie("authorization", response.toString(), null);
-                System.out.println(response);
             }
 
             conn.disconnect();
