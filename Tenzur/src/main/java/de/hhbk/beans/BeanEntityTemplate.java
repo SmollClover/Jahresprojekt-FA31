@@ -60,7 +60,6 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
         Session session = DB.getSessionFactory().openSession();
         this.item.delete(session);
         session.close();
-
         this.itemList.remove(item);
     }
 }
