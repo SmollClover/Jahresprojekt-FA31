@@ -58,6 +58,11 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     }
 
     public void removeItem(@NotNull T item) {
+        if (!this.itemList.contains(this.item)) return;
+        DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
+        Session session = DB.getSessionFactory().openSession();
+        this.item.delete(session);
+        session.close();
         this.itemList.remove(item);
     }
 }
