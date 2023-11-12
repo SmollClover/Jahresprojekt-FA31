@@ -33,8 +33,7 @@
                         <br/>
                         <h1 style="margin-top: 20px;"><i class="layout-menuitem-icon pi pi-fw pi-users"></i>&nbsp;Benutzer
                         </h1>
-                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}"
-                                     style="width: 100%; border-radius:4px;">
+                        <p:dataTable id="itemTable" var="item" value="#{benutzer.itemList}" style="width: 100%; border-radius:4px;">
                             <p:column headerText="Benutzername">
                                 <h:outputText value="#{item.benutzername}"/>
                             </p:column>
@@ -42,20 +41,16 @@
                                 <h:outputText value="#{item.email}"/>
                             </p:column>
                             <p:column style="width: 110px; text-align: center;">
-                                <p:commandButton action="#{benutzer.setItem(item)}" update=":itemDetail" oncomplete="PF('itemDetailModal').show()"
-                                                 icon="fa-solid fa-magnifying-glass" title="View">
+                                <p:commandButton action="#{benutzer.setItem(item)}" update=":itemDetail" oncomplete="PF('itemDetailModal').show()" icon="fa-solid fa-magnifying-glass" title="View">
                                 </p:commandButton>
                                 &nbsp;
-                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}"
-                                               update=":editModalDialogForm">
+                                <p:commandLink oncomplete="PF('dlgEdit').show();" action="#{benutzer.setItem(item)}" update=":editModalDialogForm">
                                     <i class="fa fa-wrench fa-fw"></i>
                                 </p:commandLink>
                                 &nbsp;
                                 <p:commandLink action="#{benutzer.removeItem(item)}" update=":contentForm">
                                     <i class="fa fa-trash fa-fw"></i>
-                                    <p:confirm header="Eintrag l&ouml;schen?"
-                                               message="Sollen der Eintrag gel&ouml;scht werden?"
-                                               icon="pi pi-exclamation-triangle"/>
+                                    <p:confirm header="Eintrag l&ouml;schen?" message="Soll der Eintrag gel&ouml;scht werden?" icon="pi pi-exclamation-triangle"/>
                                 </p:commandLink>
                             </p:column>
                         </p:dataTable>

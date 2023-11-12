@@ -1,5 +1,6 @@
 package de.hhbk.beans;
 
+import de.hhbk.entities.Benutzer;
 import de.hhbk.entities.EntityTemplate;
 import de.hhbk.managers.DatabaseManager;
 import org.hibernate.Session;
