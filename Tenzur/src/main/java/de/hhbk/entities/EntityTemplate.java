@@ -30,7 +30,7 @@ public class EntityTemplate<T> implements Serializable {
 
     public T save(Session session) {
         session.beginTransaction();
-        session.save(this);
+        session.saveOrUpdate(this);
         session.getTransaction().commit();
         return (T) this;
     }

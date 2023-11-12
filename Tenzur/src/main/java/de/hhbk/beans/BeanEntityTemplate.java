@@ -43,10 +43,15 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     }
 
     public void addItem() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        if (this.itemList.contains(this.item)) return;
+        // System.out.println(this.itemList.contains(this.item));
+        System.out.println(this.item);
+
+        // if (!this.itemList.contains(this.item)) return;
 
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
+
+
         this.item.save(session);
         session.close();
 
@@ -55,10 +60,10 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     }
 
     public void removeItem(@NotNull T item) {
-        if (!this.itemList.contains(this.item)) return;
+        if (!this.itemList.contains(item)) return;
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.item.delete(session);
+        item.delete(session);
         session.close();
         this.itemList.remove(item);
     }

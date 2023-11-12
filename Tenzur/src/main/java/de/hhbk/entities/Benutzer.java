@@ -79,4 +79,10 @@ public class Benutzer extends EntityTemplate<Benutzer> {
     public void setPasswort(String passwort) {
         this.passwort = passwort;
     }
+
+    //TODO DELETE - JUST DEBUG STUFF
+    @Override
+    public String toString() {
+    return getClass().getSimpleName() + "[benutzername=" + benutzername + "]";
+    }
 }
