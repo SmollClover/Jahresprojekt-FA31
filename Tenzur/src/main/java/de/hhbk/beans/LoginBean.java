@@ -31,7 +31,7 @@ public class LoginBean extends BeanTemplate {
     }
 
     @PostConstruct
-    private void init() throws IOException {
+    private void init() {
         AuthorizationManager manager = (AuthorizationManager) this.ctx.getAttribute("Auth");
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> cookies = context.getRequestCookieMap();
@@ -40,7 +40,10 @@ public class LoginBean extends BeanTemplate {
         if (authCookie == null) return;
         if (manager.validateToken(authCookie.getValue()) == null) return;
 
-        context.redirect(context.getRequestContextPath());
+        try {
+            context.redirect(context.getRequestContextPath());
+        } catch (IOException ignored) {
+        }
     }
 
     public void login() {
