@@ -15,8 +15,6 @@ public class PermissionManager {
     public PermissionManager() {
         this.perms.put("Benutzer", Rolle.NONE);
         this.perms.put("Login", Rolle.NONE);
-        this.perms.put("Register", Rolle.NONE);
-        this.perms.put("Termine", Rolle.ADMIN);
     }
 
     @NotNull

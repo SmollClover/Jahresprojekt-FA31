@@ -14,9 +14,6 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     private Collection<T> itemList = new ArrayList<T>();
     private T item = null;
 
-    public BeanEntityTemplate() {
-    }
-
     public BeanEntityTemplate(@NotNull Class<T> clazz) {
         super(clazz.getSimpleName());
         this.clazz = clazz;

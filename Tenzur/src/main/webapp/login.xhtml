@@ -15,7 +15,18 @@
                 <div class="card">
                     <h1>Login</h1>
                     <h:form>
-                        <p:commandButton value="Login" style="width: 120px;" action="#{login.setLogin()}"/>
+                        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
+                                     columnClasses="labelColumn, inputColumn"
+                                     style="width: 100%; margin-bottom: 15px; margin-top: 15px;">
+
+                            <p:outputLabel for="login_username" value="Username"/>
+                            <p:inputText id="login_username" value="#{login.username}" style="width: 100%;"/>
+
+                            <p:outputLabel for="login_password" value="Passwort"/>
+                            <p:password id="login_password" value="#{login.password}" style="width: 100%;" toggleMask="true" redisplay="true"/>
+                        </p:panelGrid>
+
+                        <p:commandButton value="Login" style="width: 100%;" action="#{login.login()}"/>
                     </h:form>
                 </div>
             </div>
