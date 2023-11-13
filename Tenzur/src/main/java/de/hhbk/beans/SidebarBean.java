@@ -14,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,7 @@ public class SidebarBean extends BeanTemplate {
         names.add("Chat");
         names.add("Termine");
         names.add("Reports");
+        names.add("Logout");
     }
 
     @PostConstruct
@@ -80,5 +82,11 @@ public class SidebarBean extends BeanTemplate {
 
         if (show == null) return true;
         return show;
+    }
+
+    public void logout() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.addResponseCookie("authorization", "", null);
+        context.redirect(context.getRequestContextPath() + "/login.xhtml");
     }
 }

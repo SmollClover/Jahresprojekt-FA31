@@ -13,10 +13,10 @@ public class PermissionManager {
     private final Map<String, Rolle> perms = new HashMap<String, Rolle>();
 
     public PermissionManager() {
-        this.perms.put("Benutzer", Rolle.NONE);
         this.perms.put("Login", Rolle.NONE);
-        this.perms.put("Register", Rolle.NONE);
-        this.perms.put("Termine", Rolle.ADMIN);
+        this.perms.put("Empty", Rolle.MIETER);
+        this.perms.put("Benutzer", Rolle.MITARBEITER);
+        this.perms.put("Logout", Rolle.MIETER);
     }
 
     @NotNull

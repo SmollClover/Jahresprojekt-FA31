@@ -14,9 +14,6 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     private Collection<T> itemList = new ArrayList<T>();
     private T item = null;
 
-    public BeanEntityTemplate() {
-    }
-
     public BeanEntityTemplate(@NotNull Class<T> clazz) {
         super(clazz.getSimpleName());
         this.clazz = clazz;
@@ -46,8 +43,6 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     }
 
     public void addItem() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        if (this.itemList.contains(this.item)) return;
-
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
         this.item.save(session);
@@ -58,10 +53,11 @@ public class BeanEntityTemplate<T extends EntityTemplate> extends BeanTemplate {
     }
 
     public void removeItem(@NotNull T item) {
-        if (!this.itemList.contains(this.item)) return;
+        if (!this.itemList.contains(item)) return;
+
         DatabaseManager DB = (DatabaseManager) ctx.getAttribute("DB");
         Session session = DB.getSessionFactory().openSession();
-        this.item.delete(session);
+        item.delete(session);
         session.close();
         this.itemList.remove(item);
     }

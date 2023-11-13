@@ -8,7 +8,6 @@ import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,20 +52,10 @@ public class LoginController extends HttpServlet {
                 out.print(jwt);
                 out.flush();
             } else {
-                // Response Body
-                PrintWriter out = response.getWriter();
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                out.print("{\"status\": \"failed\"}");
-                out.flush();
+                response.sendError(400);
             }
         } else {
-            // Response Body
-            PrintWriter out = response.getWriter();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            out.print("{\"status\": \"failed\"}");
-            out.flush();
+            response.sendError(400);
         }
 
     }
