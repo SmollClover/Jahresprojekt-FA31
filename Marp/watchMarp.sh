@@ -1,3 +1,3 @@
 #!/bin/bash
 
-marp --watch --theme ./rose-pine-moon.css --bespoke.osc=false --html Tenzur.md -o Tenzur.html
+marp --watch --theme ./MarpTheme/rose-pine-moon.css --bespoke.osc=false --html Tenzur.md -o Tenzur.html
