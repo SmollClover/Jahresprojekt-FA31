@@ -36,6 +36,26 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>arya</param-value>
     </context-param>
+    <context-param>
+        <param-name>database.IP</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>database.PORT</param-name>
+        <param-value>5432</param-value>
+    </context-param>
+    <context-param>
+        <param-name>database.USERNAME</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
+    <context-param>
+        <param-name>database.PASSWORD</param-name>
+        <param-value>securepassword123</param-value>
+    </context-param>
+    <context-param>
+        <param-name>database.STAGE</param-name>
+        <param-value>development</param-value>
+    </context-param>
 
 
     <!-- Servlets -->
@@ -55,6 +75,9 @@
     </listener>
     <listener>
         <listener-class>de.hhbk.listeners.AuthorizationListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>de.hhbk.listeners.PermissionListener</listener-class>
     </listener>
 
 
@@ -142,5 +165,4 @@
         <extension>svg#fontawesomeregular</extension>
         <mime-type>image/svg+xml</mime-type>
     </mime-mapping>
-
 </web-app>

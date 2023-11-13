@@ -1,12 +1,11 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class Mieter implements Serializable {
+public class Mieter extends EntityTemplate<Mieter> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,10 +20,11 @@ public class Mieter implements Serializable {
     private Collection<Konto> konto = new ArrayList<Konto>();
 
     public Mieter() {
-        super();
+        super(Mieter.class);
     }
 
     public Mieter(String titel, String anrede, String vorname, String nachname, Collection<Telefonnummer> telefon, String email, Collection<Konto> konto) {
+        this();
         this.titel = titel;
         this.anrede = anrede;
         this.vorname = vorname;

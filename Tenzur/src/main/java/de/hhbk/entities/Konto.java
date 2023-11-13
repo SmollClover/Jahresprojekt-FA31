@@ -1,12 +1,11 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class Konto implements Serializable {
+public class Konto extends EntityTemplate<Konto> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -17,10 +16,11 @@ public class Konto implements Serializable {
     private String kreditinstitut;
 
     public Konto() {
-        super();
+        super(Konto.class);
     }
 
     public Konto(String iban, String bic, Collection<Kontoinhaber> kontoinhaber, String kreditinstitut) {
+        this();
         this.iban = iban;
         this.bic = bic;
         this.kontoinhaber = kontoinhaber;

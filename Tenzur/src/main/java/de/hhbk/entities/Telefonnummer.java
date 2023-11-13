@@ -4,21 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @Entity
-public class Telefonnummer implements Serializable {
+public class Telefonnummer extends EntityTemplate<Telefonnummer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private int festnetz;
-    private int mobil;
+    private String festnetz;
+    private String mobil;
 
     public Telefonnummer() {
-        super();
+        super(Telefonnummer.class);
     }
 
-    public Telefonnummer(int festnetz, int mobil) {
+    public Telefonnummer(String festnetz, String mobil) {
+        this();
         this.festnetz = festnetz;
         this.mobil = mobil;
     }
@@ -31,19 +31,19 @@ public class Telefonnummer implements Serializable {
         this.id = id;
     }
 
-    public int getFestnetz() {
+    public String getFestnetz() {
         return festnetz;
     }
 
-    public void setFestnetz(int festnetz) {
+    public void setFestnetz(String festnetz) {
         this.festnetz = festnetz;
     }
 
-    public int getMobil() {
+    public String getMobil() {
         return mobil;
     }
 
-    public void setMobil(int mobil) {
+    public void setMobil(String mobil) {
         this.mobil = mobil;
     }
 }

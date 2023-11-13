@@ -1,41 +1,39 @@
 package de.hhbk.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Mietobjekt implements Serializable {
+public class Mietobjekt extends EntityTemplate<Mietobjekt> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String objektart;
     private int objektnummer;
-    private String objekttyp;
     private String objektbeschreibung;
     private int wohnflaeche;
     private int qmPreisKalt;
     private int nebenkosten;
     private String notzifeld;
     private String strasse;
-    private int strassenummer;
-    @OneToMany
+    private String hausnummer;
+    @ManyToOne
     private Ort ort;
 
     public Mietobjekt() {
-        super();
+        super(Mietobjekt.class);
     }
 
-    public Mietobjekt(String objektart, int objektnummer, String objekttyp, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, int strassenummer, Ort ort) {
+    public Mietobjekt(String objektart, int objektnummer, String objektbeschreibung, int wohnflaeche, int qmPreisKalt, int nebenkosten, String notzifeld, String strasse, String hausnummer, Ort ort) {
+        this();
         this.objektart = objektart;
         this.objektnummer = objektnummer;
-        this.objekttyp = objekttyp;
         this.objektbeschreibung = objektbeschreibung;
         this.wohnflaeche = wohnflaeche;
         this.qmPreisKalt = qmPreisKalt;
         this.nebenkosten = nebenkosten;
         this.notzifeld = notzifeld;
         this.strasse = strasse;
-        this.strassenummer = strassenummer;
+        this.hausnummer = hausnummer;
         this.ort = ort;
     }
 
@@ -61,14 +59,6 @@ public class Mietobjekt implements Serializable {
 
     public void setObjektnummer(int objektnummer) {
         this.objektnummer = objektnummer;
-    }
-
-    public String getObjekttyp() {
-        return objekttyp;
-    }
-
-    public void setObjekttyp(String objekttyp) {
-        this.objekttyp = objekttyp;
     }
 
     public String getObjektbeschreibung() {
@@ -119,12 +109,12 @@ public class Mietobjekt implements Serializable {
         this.strasse = strasse;
     }
 
-    public int getStrassenummer() {
-        return strassenummer;
+    public String getHausnummer() {
+        return hausnummer;
     }
 
-    public void setStrassenummer(int strassenummer) {
-        this.strassenummer = strassenummer;
+    public void setHausnummer(String hausnummer) {
+        this.hausnummer = hausnummer;
     }
 
     public Ort getOrt() {

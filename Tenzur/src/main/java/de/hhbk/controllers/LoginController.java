@@ -1,15 +1,18 @@
 package de.hhbk.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import de.hhbk.entities.Benutzer;
 import de.hhbk.managers.AuthorizationManager;
+import de.hhbk.managers.DatabaseManager;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/api/login")
 public class LoginController extends HttpServlet {
@@ -22,7 +25,6 @@ public class LoginController extends HttpServlet {
         try {
             authenticate(request, response);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -31,32 +33,30 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // System.out.println(username);
-        // System.out.println(password);
-
         AuthorizationManager manager = (AuthorizationManager) request.getServletContext().getAttribute("Auth");
+        DatabaseManager DB = (DatabaseManager) request.getServletContext().getAttribute("DB");
 
-        String hashedPassword = manager.hashPassword(password);
+        Session session = DB.getSessionFactory().openSession();
+        Benutzer user = new Benutzer().searchBenutzername(session, username);
 
-        // TODO Load Password from User Table by username/email
-        BCrypt.Result result = manager.verifyPassword(password, hashedPassword);
+        if (user != null) {
+            BCrypt.Result login_result = manager.verifyPassword(password, user.getPasswort());
 
-        // System.out.println(result.verified);
-        if (result.verified) {
-            String jwt = manager.generateJWT();
-            Cookie auth = new Cookie("authorization", jwt);
-            response.addCookie(auth);
+            if (login_result.verified) {
+                String jwt = manager.generateJWT(user.getId());
+
+                // Response Body
+                PrintWriter out = response.getWriter();
+                response.setContentType("plain/text");
+                response.setCharacterEncoding("UTF-8");
+                out.print(jwt);
+                out.flush();
+            } else {
+                response.sendError(400);
+            }
         } else {
             response.sendError(400);
         }
 
-        // System.out.println(hashedPassword);
-
-        // if (loginDao.validate(username, password)) {
-        //     RequestDispatcher dispatcher = request.getRequestDispatcher("login-success.jsp");
-        //     dispatcher.forward(request, response);
-        // } else {
-        //     throw new Exception("Login not successful..");
-        // }
     }
 }

@@ -12,10 +12,10 @@ public class DatabaseListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
 
-        DatabaseManager manager = new DatabaseManager();
+        DatabaseManager manager = new DatabaseManager(ctx.getInitParameter("database.IP"), ctx.getInitParameter("database.PORT"), ctx.getInitParameter("database.USERNAME"), ctx.getInitParameter("database.PASSWORD"), ctx.getInitParameter("database.STAGE"));
         ctx.setAttribute("DB", manager);
 
-        System.out.println("Database connection initialized for Application.");
+        System.out.println("Database Manager intiliazed.");
     }
 
     public void contextDestroyed(ServletContextEvent event) {
@@ -24,6 +24,6 @@ public class DatabaseListener implements ServletContextListener {
         DatabaseManager manager = (DatabaseManager) ctx.getAttribute("DB");
         manager.close();
 
-        System.out.println("Database connection closed for Application.");
+        System.out.println("Database Manager stopped.");
     }
 }
