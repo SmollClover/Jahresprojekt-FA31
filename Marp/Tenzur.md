@@ -36,3 +36,23 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 - Sortier-, Filter- und Suchfunktionen
 
 ---
+
+# Software Vorstellung
+
+---
+
+# Frontend
+
+---
+
+# Backend
+
+---
+
+# Datenbank
+
+---
+
+# Unsere Erkenntnisse
+
+---
