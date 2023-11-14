@@ -54,5 +54,3 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 ---
 
 # Unsere Erkenntnisse
-
----
