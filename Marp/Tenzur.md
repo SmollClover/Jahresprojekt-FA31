@@ -2,6 +2,7 @@
 marp: true
 theme: rose-pine-moon
 transition: fade
+paginate: true
 ---
 
 <!-- paginate: skip -->
@@ -54,3 +55,9 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 ---
 
 # Unsere Erkenntnisse
+
+---
+
+<!-- paginate: false -->
+
+# <!--fit--> Danke für Ihre Aufmerksamkeit
