@@ -16,7 +16,7 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 # Inhaltsverzeichnis
 
-1. Unsere Ziel
+1. <span style="view-transition-name: Unsere-Ziele">Unsere Ziele</span>
 2. Software Vorstellung
 3. Frontend
 4. Backend
@@ -25,7 +25,7 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ---
 
-# Unsere Ziele
+# <span style="view-transition-name: Unsere-Ziele">Unsere Ziele</span>
 
 - Verwaltung von Immobilienobjekten
 - Verwaltung von Mietern (Objekt Mieter)
