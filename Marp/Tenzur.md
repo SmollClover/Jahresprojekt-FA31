@@ -47,27 +47,35 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 ---
 
 # Backend
+
 - Tobias
-	- Listeners
-		- starten wenn der Server startet
-		- Bilden Komponenten ab die immer erreichbar sind
-		- Werden gestoppt wenn der Server stoppt
-	- Login Controller
-		- GET leitet auf login page weiter
-		- POST gibt Anmeldedaten an den AuthManager zum authentizieren und gibt bei Erfolg ein Token wieder
-	- Database & Permission Manager
-		- 
+    - Listeners
+        - starten wenn der Server startet
+        - Bilden Komponenten ab die immer erreichbar sind
+        - Werden gestoppt wenn der Server stoppt
+    - Login Controller
+        - GET leitet auf login page weiter
+        - POST gibt Anmeldedaten an den AuthManager zum authentizieren und gibt bei Erfolg ein Token wieder
+    - Database & Permission Manager
+        -
 - Lars
 
 ---
+
 # Backend
+
 ## Listeners
+
 - Starten wenn der Server startet
 - Bilden Komponenten ab die immer erreichbar sind
 - Werden gestoppt wenn der Server stoppt
+
 ---
+
 # Backend
+
 ## Listeners
+
 ```java
 public void contextInitialized(ServletContextEvent event) {
 	ServletContext ctx = event.getServletContext();
@@ -82,16 +90,23 @@ public void contextInitialized(ServletContextEvent event) {
 	System.out.println("Authorization Manager intiliazed.");
 }
 ```
+
 ---
+
 # Backend
+
 ## Permission und Database Manager
 
 ---
+
 # Backend
+
 ## Login Controller
+
 - API Schnittstelle zur Benutzer Authentifizierung
 - GET Requests leiten weiter
 - POST Requests führen zur Authentifizierung
+
 ---
 
 # Datenbank
