@@ -45,10 +45,10 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ---
 
-# Backend
+# <span style="view-transition-name: Backend">Backend</span>
 
 - Tobias
-    - Listeners
+    - <span style="view-transition-name: Listeners">Listeners</span>
         - starten wenn der Server startet
         - Bilden Komponenten ab die immer erreichbar sind
         - Werden gestoppt wenn der Server stoppt
@@ -61,9 +61,9 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ---
 
-# Backend
+# <span style="view-transition-name: Backend">Backend</span>
 
-## Listeners
+## <span style="view-transition-name: Listeners">Listeners</span>
 
 - Starten wenn der Server startet
 - Bilden Komponenten ab die immer erreichbar sind
@@ -71,9 +71,11 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ---
 
-# Backend
+<!-- paginate: hold -->
 
-## Listeners
+# <span style="view-transition-name: Backend">Backend</span>
+
+## <span style="view-transition-name: Listeners">Listeners</span>
 
 ```java
 public void contextInitialized(ServletContextEvent event) {
@@ -92,18 +94,25 @@ public void contextInitialized(ServletContextEvent event) {
 
 ---
 
-# Backend
+# <span style="view-transition-name: Backend">Backend</span>
+
 ## Permission Manager
-- 
+
+-
+
 ---
-# Backend
+
+# <span style="view-transition-name: Backend">Backend</span>
+
 ## Database Manager
+
 - Wird initialisiert mit den nötigen Daten
 - Erstell eine SessionFactory und setzt Konfiguration für SQL
 - Fügt ggf. Testdaten in die Datenbank ein
+
 ---
 
-# Backend
+# <span style="view-transition-name: Backend">Backend</span>
 
 ## Login Controller
 
@@ -112,6 +121,57 @@ public void contextInitialized(ServletContextEvent event) {
 - POST Requests führen zur Authentifizierung
 
 ---
+
+# <span style="view-transition-name: Backend">Backend</span>
+
+## <span style="view-transition-name: Authorization-Manager">Authorization Manager</span>
+
+```java
+public class AuthorizationManager {
+    private EllipticCurveJsonWebKey senderJwk = null;
+    private EllipticCurveJsonWebKey receiverJwk = null;
+
+    public AuthorizationManager() throws JoseException { this.generateKeyPair(); }
+    private void generateKeyPair() throws JoseException
+
+    @NotNull
+    public String generateJWT(@NotNull long userID) throws JoseException
+
+    @NotNull
+    private JsonWebSignature getJsonWebSignature(@NotNull long userID)
+
+    public String validateToken(@NotNull String token)
+
+    @NotNull
+    public String hashPassword(@NotNull String password)
+
+    @NotNull
+    public BCrypt.Result verifyPassword(@NotNull String password, @NotNull String hashedPassword)
+}
+```
+
+---
+
+<!-- paginate: hold -->
+
+# <span style="view-transition-name: Backend">Backend</span>
+
+## <span style="view-transition-name: Authorization-Manager">Authorization Manager</span>
+
+```java
+private EllipticCurveJsonWebKey senderJwk = null;
+private EllipticCurveJsonWebKey receiverJwk = null;
+
+private void generateKeyPair() throws JoseException
+```
+
+Keys werden beim start der Anwendung generiert und im RAM gespeichert.
+
+> Beide Keys werden nur für die Verschlüsselung der LoginSessions verwendet.
+
+---
+
+<!-- paginate: true -->
 
 # Datenbank
 
