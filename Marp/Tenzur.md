@@ -93,9 +93,14 @@ public void contextInitialized(ServletContextEvent event) {
 ---
 
 # Backend
-
-## Permission und Database Manager
-
+## Permission Manager
+- 
+---
+# Backend
+## Database Manager
+- Wird initialisiert mit den nötigen Daten
+- Erstell eine SessionFactory und setzt Konfiguration für SQL
+- Fügt ggf. Testdaten in die Datenbank ein
 ---
 
 # Backend
