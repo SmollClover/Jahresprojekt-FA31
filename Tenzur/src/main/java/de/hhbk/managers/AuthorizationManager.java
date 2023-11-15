@@ -98,7 +98,6 @@ public class AuthorizationManager {
     }
 
     /**
-     * 
      * @param token The encrypted JWT String
      * @return Either the decrypted token payload, here the user ID or null on failure
      */
