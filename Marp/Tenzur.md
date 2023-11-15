@@ -2,7 +2,6 @@
 marp: true
 theme: rose-pine-moon
 transition: fade
-paginate: true
 ---
 
 <!-- paginate: skip -->
@@ -78,16 +77,16 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ```java
 public void contextInitialized(ServletContextEvent event) {
-	ServletContext ctx = event.getServletContext();
-	AuthorizationManager manager = null;
+    ServletContext ctx = event.getServletContext();
+    AuthorizationManager manager = null;
 
-	try {
-		manager = new AuthorizationManager();
-	} catch (JoseException e) {
-		throw new RuntimeException(e);
-	}
-	ctx.setAttribute("Auth", manager);
-	System.out.println("Authorization Manager intiliazed.");
+    try {
+        manager = new AuthorizationManager();
+    } catch (JoseException e) {
+        throw new RuntimeException(e);
+    }
+    ctx.setAttribute("Auth", manager);
+    System.out.println("Authorization Manager intiliazed.");
 }
 ```
 
