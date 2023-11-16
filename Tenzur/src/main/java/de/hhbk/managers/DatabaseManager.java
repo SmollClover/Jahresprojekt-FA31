@@ -152,7 +152,7 @@ public class DatabaseManager {
         MietobjektMieter MietobjektMieterRobin = new MietobjektMieter(new MietobjektMieterId(MietobjektRobin, MieterRobin), new Date()).save(session);
         MietobjektMieter MietobjektMieterBurak = new MietobjektMieter(new MietobjektMieterId(MietobjektBurak, MieterBurak), new Date()).save(session);
 
-        // Passwort = passwort
+        // Passwort = passwort, hier gehashed
         Benutzer BenutzerTobias = new Benutzer("tobegeiler@gmail.com", "tobias", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.MIETER).save(session);
         Benutzer BenutzerLars = new Benutzer("lars.ist.cool@hotmail.com", "lars", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.ADMIN).save(session);
         Benutzer BenutzerLaura = new Benutzer("laura@web.de", "laura", "$2y$04$.v2xEfRENVoGd3YSt06OY.UN7HoeH4z46PoWZsOxKewqXJCQdoV5W", Rolle.VERMIETER).save(session);
