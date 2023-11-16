@@ -41,7 +41,7 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 ---
 
-# Frontend
+![bg 75%](Assets/Frontend.png)
 
 ---
 
