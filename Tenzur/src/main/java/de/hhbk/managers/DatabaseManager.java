@@ -17,6 +17,15 @@ public class DatabaseManager {
     private SessionFactory sessionFactory;
 
 
+    /**
+     * 
+     * @param ip die IP der Datenbank
+     * @param port der Port der Datenbank
+     * @param username der Benutzername für die Datenbank
+     * @param password das Passwort für die Datenbank
+     * @param stage bestimmt ob das System Live ist oder in Entwicklungsphase
+     * Erstellt eine Sessionfactory mit den nötigen Konfigurationen
+     */
     public DatabaseManager(String ip, String port, String username, String password, String stage) {
         this.ip = ip;
         this.port = port;
@@ -57,6 +66,9 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * @return sessionProperties die Konfiguration für Hibernate
+     */
     private Properties getProperties() {
         Properties sessionProperties = new Properties();
 
@@ -74,6 +86,9 @@ public class DatabaseManager {
         return sessionProperties;
     }
 
+    /**
+     * Erstellt Testdaten in der Datenbank, sollten diese noch nicht existieren
+     */
     private void generateDummyData() {
         Session session = this.sessionFactory.openSession();
 
