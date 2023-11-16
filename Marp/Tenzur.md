@@ -180,6 +180,16 @@ BCrypt wird als sicherer Password-Hashsing-Algorithmus verwendet.
 
 # Datenbank
 
+Tabelle_Id wurde überall auf nur Id gekürzt.
+
+* User → Benutzer
+	* Reduziert auf Benutzername, E-Mail, Rolle, Passwort
+* Einnahmeuebersicht → Einnahme
+* Kontoverbindung → Konto
+* Mieterstammdaten → Mieter
+* Rolle
+	* Wurde zu einem festdefinierten Enum
+
 ---
 
 # Unsere Erkenntnisse
