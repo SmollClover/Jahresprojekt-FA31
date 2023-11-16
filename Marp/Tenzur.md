@@ -98,7 +98,8 @@ public void contextInitialized(ServletContextEvent event) {
 
 ## Permission Manager
 
--
+- Prüft auf jeder Seite ob der User berechtigt ist
+- Extra Funktionen zum Prüfen der Seiten und User
 
 ---
 
@@ -107,7 +108,7 @@ public void contextInitialized(ServletContextEvent event) {
 ## Database Manager
 
 - Wird initialisiert mit den nötigen Daten
-- Erstell eine SessionFactory und setzt Konfiguration für SQL
+- Erstellt eine SessionFactory und setzt Konfiguration für SQL
 - Fügt ggf. Testdaten in die Datenbank ein
 
 ---
