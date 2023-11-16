@@ -47,27 +47,6 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 
 # <span style="view-transition-name: Backend">Backend</span>
 
-- Tobias
-    - <span style="view-transition-name: Listeners">Listeners</span>
-        - starten wenn der Server startet
-        - Bilden Komponenten ab die immer erreichbar sind
-        - Werden gestoppt wenn der Server stoppt
-    - Login Controller
-        - GET leitet auf login page weiter
-        - POST gibt Anmeldedaten an den AuthManager zum authentizieren und gibt bei Erfolg ein Token wieder
-    - Database & Permission Manager
-        -
-- Lars
-
----
-<style scoped>
-	h1 {
-		margin-bottom: 0 !important;
-	}
-</style>
-
-# <span style="view-transition-name: Backend">Backend</span>
-
 ## <span style="view-transition-name: Listeners">Listeners</span>
 
 - Starten wenn der Server startet
