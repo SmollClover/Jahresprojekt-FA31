@@ -60,6 +60,11 @@ Tobias Ochott, Lars Belitz, Burak Kablan, Robin Walter, Laura Boniecki, Marwin P
 - Lars
 
 ---
+<style scoped>
+	h1 {
+		margin-bottom: 0 !important;
+	}
+</style>
 
 # <span style="view-transition-name: Backend">Backend</span>
 

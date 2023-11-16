@@ -19,18 +19,18 @@ import java.io.PrintWriter;
 public class LoginController extends HttpServlet {
 
     /**
-     * @param request the request from the client
-     * @param response the response to the client
-     * Upon every GET request to the route the server redirects to the login page
+     * @param request die request vom client
+     * @param response die response zum client
+     * Bei jeder GET-Anfrage an die Route leitet der Server auf die Anmeldeseite um
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect(request.getContextPath() + "/login.xhtml");
     }
 
     /**
-     * @param request the request from the client
-     * @param response the response to the client
-     * Upon every POST request to the route the server tries to authenticate the user
+     * @param request die request vom client
+     * @param response die response zum client
+     * Bei jeder POST-Anfrage an die Route versucht der Server, den Benutzer zu authentifizieren
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -41,12 +41,12 @@ public class LoginController extends HttpServlet {
     }
 
     /**
-     * @param request the request from the client, should contain the username and password
-     * @param response the response to the client
-     * Upon every POST request to the route the server tries to authenticate the user
-     * If no username or password are submitted returns an error
-     * If no user could be found in the database returns an error
-     * If the user can be authenticated return an encrypted JWT
+     * @param request die request vom client, sollte den Benutzernamen und das Passwort enthalten
+     * @param response die response zum client
+     * Bei jeder POST-Anfrage an die Route versucht der Server, den Benutzer zu authentifizieren
+     * Wenn kein Benutzername oder Passwort angegeben wird, wird ein Fehler zurückgegeben
+     * Wenn kein Benutzer in der Datenbank gefunden werden konnte, wird ein Fehler zurückgegeben
+     * Wenn der Benutzer authentifiziert werden kann, gibt die Funktion ein verschlüsseltes JWT zurück
      */
     private void authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");

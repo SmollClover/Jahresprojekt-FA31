@@ -38,7 +38,7 @@ public class AuthorizationManager {
     }
 
     /**
-     * Creates an Encrpytion Key Pair for encrypting and decrypting a JWT
+     * Erstellt ein Encryption Key-Pair zum Ver- und Entschlüsseln der JWT
      * @throws JoseException
      */
     private void generateKeyPair() throws JoseException {
@@ -51,8 +51,8 @@ public class AuthorizationManager {
 
     /**
      * 
-     * @param userID the user ID to save into the JWT
-     * @return The encrypted JWT String
+     * @param userID die Benutzer-ID, die im JWT gespeichert werden soll
+     * @return der verschlüsselte JWT-String
      * @throws JoseException
      */
     @NotNull
@@ -74,8 +74,8 @@ public class AuthorizationManager {
 
     /**
      * 
-     * @param userID the user ID to save into the JWT
-     * @return The unencrypted Json Web Signature
+     * @param userID die Benutzer-ID, die im JWT gespeichert werden soll
+     * @return die unverschlüsselte Json Web Signature (JWT)
      */
     @NotNull
     private JsonWebSignature getJsonWebSignature(@NotNull long userID) {
@@ -98,8 +98,8 @@ public class AuthorizationManager {
     }
 
     /**
-     * @param token The encrypted JWT String
-     * @return Either the decrypted token payload, here the user ID or null on failure
+     * @param token der verschlüsselte JWT-String
+     * @return entweder der entschlüsselte Token Inhalt, hier die Benutzer-ID, oder null bei Fehlschlag
      */
     public String validateToken(@NotNull String token) {
         JwtConsumer jwtConsumer = new JwtConsumerBuilder().setRequireExpirationTime()
@@ -126,8 +126,8 @@ public class AuthorizationManager {
 
     /**
      * 
-     * @param password The unhashed password string
-     * @return The hashed password string
+     * @param password das unverschlüsselte Passwort
+     * @return das verschlüsselte Passwort
      */
     @NotNull
     public String hashPassword(@NotNull String password) {
@@ -136,9 +136,9 @@ public class AuthorizationManager {
 
     /**
      * 
-     * @param password The unhashed password from the user input
-     * @param hashedPassword The hashed password saved in the database for comparison
-     * @return
+     * @param password das ungehashte Passwort, welches der User eingegeben hat
+     * @param hashedPassword das in der Datenbank gespeicherte gehashte Passwort zum Verifizieren
+     * @return true wenn Passwort verifiziert werden konnte, false wenn nicht
      */
     @NotNull
     public BCrypt.Result verifyPassword(@NotNull String password, @NotNull String hashedPassword) {
