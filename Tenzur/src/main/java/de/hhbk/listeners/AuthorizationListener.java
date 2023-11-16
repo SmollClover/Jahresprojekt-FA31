@@ -10,11 +10,15 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AuthorizationListener implements ServletContextListener {
+    /**
+     * @param event ServletEvent 
+     * Bildet eine permanente Instanz des AuthorizationManager's welche in einer einzelnen Sitzung des Servers immer benutzt werden kann
+     */
     @Override
     public void contextInitialized(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
-
         AuthorizationManager manager = null;
+
         try {
             manager = new AuthorizationManager();
         } catch (JoseException e) {

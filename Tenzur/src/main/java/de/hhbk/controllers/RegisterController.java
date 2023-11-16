@@ -21,7 +21,6 @@ public class RegisterController extends HttpServlet {
         try {
             register(request, response);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

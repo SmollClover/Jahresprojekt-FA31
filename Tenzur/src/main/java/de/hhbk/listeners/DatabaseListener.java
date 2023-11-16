@@ -9,6 +9,10 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class DatabaseListener implements ServletContextListener {
+    /**
+     * @param event ServletEvent 
+     * Bildet eine permanente Instanz des DatabaseManager's welche in einer einzelnen Sitzung des Servers immer benutzt werden kann
+     */
     public void contextInitialized(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
 
@@ -18,6 +22,10 @@ public class DatabaseListener implements ServletContextListener {
         System.out.println("Database Manager intiliazed.");
     }
 
+    /**
+     * @param event ServletEvent 
+     * Beendet die permanente Instanz des DatabaseManager's wenn der Server stoppt
+     */
     public void contextDestroyed(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
 

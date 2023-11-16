@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class ValidationManager {
     /**
-     * @param username the user input for the username
-     * @param password the user input for the password
-     * @return a map containing a status for success or failure and messages which of the inputs was invalid
+     * @param username die Benutzereingabe für den Benutzernamen
+     * @param password die Benutzereingabe für das Passwort
+     * @return eine Map, die einen Status für Erfolg oder Misserfolg und Meldungen darüber enthält, welche der Eingaben ungültig war
      */
     public Map<Boolean, String> validateLogin(String username, String password) {
         Map<Boolean, String> validation = new HashMap<>();
@@ -15,9 +15,9 @@ public class ValidationManager {
     }
 
     /**
-     * @param username the user input for the username
-     * @param password the user input for the password
-     * @return a map containing a status for success or failure and messages which of the inputs was invalid
+     * @param username die Benutzereingabe für den Benutzernamen
+     * @param password die Benutzereingabe für das Passwort
+     * @return eine Map, die einen Status für Erfolg oder Misserfolg und Meldungen darüber enthält, welche der Eingaben ungültig war
      */
     public Map<Boolean, String> validateRegister(String username, String password) {
         Map<Boolean, String> validation = new HashMap<>();

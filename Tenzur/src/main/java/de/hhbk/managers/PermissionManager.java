@@ -12,6 +12,9 @@ import java.util.Map;
 public class PermissionManager {
     private final Map<String, Rolle> perms = new HashMap<String, Rolle>();
 
+    /**
+     * Setzt die minimale Berechtigungs Rolle für die Seiten die ein Nutzer benötigt um mit dieser zu interagieren
+     */
     public PermissionManager() {
         this.perms.put("Login", Rolle.NONE);
         this.perms.put("Empty", Rolle.MIETER);
@@ -19,6 +22,11 @@ public class PermissionManager {
         this.perms.put("Logout", Rolle.MIETER);
     }
 
+    /**
+     * 
+     * @param name die Seite von welche die min. Rolle gelesen werden soll
+     * @return die Rolle, wenn keine Rolle existiert gebe die niedrigste zuräck
+     */
     @NotNull
     public Rolle get(@NotNull String name) {
         Rolle r = this.perms.get(name);
@@ -27,6 +35,12 @@ public class PermissionManager {
         return r;
     }
 
+    /**
+     * 
+     * @param session die Session Instanz
+     * @param userId die ID des Benutzers dessen Rolle gelesen werden soll
+     * @return die Rolle falls eine gefunden wurde ansonsten 'null'
+     */
     public Rolle current(@NotNull Session session, @NotNull long userId) {
         Benutzer result = new Benutzer().getById(session, userId);
 
@@ -34,6 +48,13 @@ public class PermissionManager {
         return result.getRolle();
     }
 
+    /**
+     * 
+     * @param session die Session Instanz
+     * @param userId die ID des Benutzers dessen Rolle gelesen werden soll
+     * @param name der Name der Seite die benutzt wird
+     * @return 'true' wenn die Berechtigung des Benutzers ausreicht, 'false' wenn nicht
+     */
     @NotNull
     public boolean has(@NotNull Session session, @NotNull long userId, @NotNull String name) {
         if (this.get(name) == Rolle.NONE) return true;

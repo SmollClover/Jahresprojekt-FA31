@@ -12,6 +12,10 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class PermissionListener implements ServletContextListener {
     @Override
+    /**
+     * @param event ServletEvent 
+     * Bildet eine permanente Instanz des PermissionManager's welche in einer einzelnen Sitzung des Servers immer benutzt werden kann
+     */
     public void contextInitialized(ServletContextEvent event) {
         ServletContext ctx = event.getServletContext();
 

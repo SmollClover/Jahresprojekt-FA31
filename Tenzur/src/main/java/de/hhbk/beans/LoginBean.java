@@ -30,6 +30,9 @@ public class LoginBean extends BeanTemplate {
         super();
     }
 
+    /**
+     * Holt den AuthManager, lädt das Auth-Cookie der Request und validiert dieses wenn es existiert
+     */
     @PostConstruct
     private void init() {
         AuthorizationManager manager = (AuthorizationManager) this.ctx.getAttribute("Auth");
@@ -46,6 +49,11 @@ public class LoginBean extends BeanTemplate {
         }
     }
 
+    /**
+     * Erstellt eine request an die Login API Route mit den Eingaben des Benutzers,
+     * setzt das JWT bei Erfolg
+     * und setzt den authorization Cookie bei einem Fehler auf 'null'
+     */
     public void login() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         String baseUrl = context.getRequestScheme() + "://" + context.getRequestServerName() + ":" + context.getRequestServerPort() + context.getRequestContextPath();
