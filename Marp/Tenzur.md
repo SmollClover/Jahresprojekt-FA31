@@ -156,6 +156,24 @@ Keys werden beim start der Anwendung generiert und im RAM gespeichert.
 
 ---
 
+# <span style="view-transition-name: Backend">Backend</span>
+
+## <span style="view-transition-name: Authorization-Manager">Authorization Manager</span>
+
+```java
+@NotNull
+public String hashPassword(@NotNull String password)
+
+@NotNull
+public BCrypt.Result verifyPassword(@NotNull String password, @NotNull String hashedPassword)
+```
+
+BCrypt wird als sicherer Password-Hashsing-Algorithmus verwendet.
+
+> Der Cost-Factor von 15 wurde gewählt.
+
+---
+
 <!-- paginate: true -->
 
 # Datenbank
